@@ -11,54 +11,68 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* **University of California, Berkeley**, Berkeley, U.S.  
+  Master of Engineering in Industrial Engineering & Operational Research (Expected May 2025)  
+  * Award: Fung Excellence Scholarship  
+  * Capstone: Deep Learning Time Series Forecasting (Transformers / DeepAR)  
+  * Relevant Modules: Optimization, Stochastic Processes, NLP, Revenue Management, Entrepreneurship (Haas MBA)
 
-Work experience
+* **University of St Andrews**, St Andrews, UK  
+  Master of Arts (Honours) in Mathematics (Sep 2020 – Jun 2024)  
+  * Activities: Tennis (Ex-Squad), Wine Tasting Team Co-Founder, Band Flutist  
+  * Relevant Modules: Machine Learning, Bayesian Statistics, Algorithms, Computation Theory, Partial Differential Equations  
+
+Work Experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * Github University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* **VIP.com**, Guangzhou, China  
+  Data Science Intern, E-commerce Product Technology R&D (Jun 2024 – Aug 2024)  
+  * Developed PySpark workflows to compare delivery metrics, reducing shipment time by 27%.
+  * Integrated RAG models to automate return responsibility analysis, achieving 98% accuracy.
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* **Amazon**, London, UK  
+  Business Analyst Intern, EU Customer Order Forecasting (May 2023 – Sep 2023)  
+  * Deployed distributed Gradient Boosting models on AWS for demand forecasting with a 5.2% MAPE.
+  * Automated Power BI dashboards, optimizing report generation and improving demand forecasting accuracy.
 
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
+* **Dark Matter AI (DMAI)**, Guangzhou, China  
+  Data Engineer Intern (Jul 2022 – Aug 2022)  
+  * Improved data quality in labeling projects, reducing manual error rates by 20%.
+  * Managed 10GB+ data processing pipelines, supporting machine learning model training.
+
+* **SCOR Ventures**, London, UK (Hybrid)  
+  Intern, Corporate Ventures Capital (Oct 2021 – Jun 2022)  
+  * Automated VBA valuation templates, enhancing efficiency by 70%.
+  * Developed data-driven SaaS analysis in Tableau, supporting investment reviews.
+
+Research Experience
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* **School of Mathematics and Statistics, University of St Andrews**  
+  Research Assistant (Sep 2023 – Feb 2024)  
+  * Project: Spatio-Temporal Pollution Impact on Health Prediction  
+  * Designed a 2-stage Gaussian Process model for pollution trend analysis, assessing health impacts using CARBayes in R.
+
+Skills and Languages
+======
+* **Technical Skills**: Python (PyTorch, TensorFlow, Scikit-learn, Streamlit, Flask), AWS (SageMaker, EC2), R (dplyr, tseries), Java, C++, Databricks, A/B Testing, SQL, Git, Spark, Excel (VBA), Power BI  
+* **Languages**: Mandarin (Native), English (Fluent), Cantonese (Fluent), German (Intermediate)  
 
 Publications
 ======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
+* [Sequential Monte Carlo Methods in Spatio-Temporal Modeling](https://github.com/kerryzl77/SMC-SSM/blob/main/Sequential_Monte_Carlo_Methods.pdf)  
+* [Classification of Product Manager Types in the Job Market](https://github.com/kerryzl77/Machine-Learning/blob/main/Job%20Classification%20/Info256_Midterm_Report.pdf)  
+
 Talks
 ======
   <ul>{% for post in site.talks reversed %}
     {% include archive-single-talk-cv.html  %}
   {% endfor %}</ul>
-  
+
 Teaching
 ======
   <ul>{% for post in site.teaching reversed %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
-Service and leadership
+
+Service and Leadership
 ======
-* Currently signed in to 43 different slack teams
+* Actively engaged in Entrepreneurship and data science communities, fostering collaboration and knowledge-sharing in AI and data analytics.
