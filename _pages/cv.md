@@ -61,7 +61,7 @@ Publications
 * [Sequential Monte Carlo Methods in Spatio-Temporal Modeling](https://github.com/kerryzl77/SMC-SSM/blob/main/Sequential_Monte_Carlo_Methods.pdf)  
 * [Classification of Product Manager Types in the Job Market](https://github.com/kerryzl77/Machine-Learning/blob/main/Job%20Classification%20/Info256_Midterm_Report.pdf)  
 
-Talks
+<!-- Talks
 ======
   <ul>{% for post in site.talks reversed %}
     {% include archive-single-talk-cv.html  %}
@@ -71,7 +71,7 @@ Teaching
 ======
   <ul>{% for post in site.teaching reversed %}
     {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+  {% endfor %}</ul> -->
 
 Service and Leadership
 ======
