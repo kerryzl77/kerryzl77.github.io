@@ -27,7 +27,7 @@ author:
   bio              : "Master Student at Berkeley IEOR"
   location         : "Berkeley"
   employer         : "University of California, Berkeley"
-  uri              : "https://kerryzl77.github.io/about/"
+  uri              : # "https://kerryzl77.github.io/about/"
   email            : "zikailiu@berkeley.edu" 
 
   # Academic websites
