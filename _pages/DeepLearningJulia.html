@@ -57,56 +57,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="DeepLearningJulia_files/libs/clipboard/clipboard.min.js"></script>
-<script src="DeepLearningJulia_files/libs/quarto-html/quarto.js"></script>
-<script src="DeepLearningJulia_files/libs/quarto-html/popper.min.js"></script>
-<script src="DeepLearningJulia_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="DeepLearningJulia_files/libs/quarto-html/anchor.min.js"></script>
-<link href="DeepLearningJulia_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="DeepLearningJulia_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="DeepLearningJulia_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="DeepLearningJulia_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="DeepLearningJulia_files/libs/bootstrap/bootstrap-81e35ebdb4125010edbabe6010586085.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="DeepLearning-Julia_files/libs/clipboard/clipboard.min.js"></script>
+<script src="DeepLearning-Julia_files/libs/quarto-html/quarto.js"></script>
+<script src="DeepLearning-Julia_files/libs/quarto-html/popper.min.js"></script>
+<script src="DeepLearning-Julia_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="DeepLearning-Julia_files/libs/quarto-html/anchor.min.js"></script>
+<link href="DeepLearning-Julia_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="DeepLearning-Julia_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="DeepLearning-Julia_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="DeepLearning-Julia_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="DeepLearning-Julia_files/libs/bootstrap/bootstrap-973236bd072d72a04ee9cd82dcc9cb29.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
 
-<body>
+<body class="fullcontent">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
-<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#deep-learningai-in-julia" id="toc-deep-learningai-in-julia" class="nav-link active" data-scroll-target="#deep-learningai-in-julia"><span class="header-section-number">1</span> Deep Learning/AI in Julia</a>
-  <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">1.1</span> Introduction</a>
-  <ul class="collapse">
-  <li><a href="#what-is-flux.jl" id="toc-what-is-flux.jl" class="nav-link" data-scroll-target="#what-is-flux.jl"><span class="header-section-number">1.1.1</span> What is Flux.jl</a></li>
-  </ul></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">1.2</span> Example</a>
-  <ul class="collapse">
-  <li><a href="#environment-set-up" id="toc-environment-set-up" class="nav-link" data-scroll-target="#environment-set-up"><span class="header-section-number">1.2.1</span> Environment Set Up</a></li>
-  <li><a href="#building-a-neural-network-model-with-flux" id="toc-building-a-neural-network-model-with-flux" class="nav-link" data-scroll-target="#building-a-neural-network-model-with-flux"><span class="header-section-number">1.2.2</span> Building a Neural Network Model with Flux</a></li>
-  <li><a href="#gradient" id="toc-gradient" class="nav-link" data-scroll-target="#gradient"><span class="header-section-number">1.2.3</span> Gradient</a></li>
-  <li><a href="#defining-the-loss-function-and-optimizer" id="toc-defining-the-loss-function-and-optimizer" class="nav-link" data-scroll-target="#defining-the-loss-function-and-optimizer"><span class="header-section-number">1.2.4</span> Defining the Loss Function and Optimizer</a></li>
-  <li><a href="#training-the-model" id="toc-training-the-model" class="nav-link" data-scroll-target="#training-the-model"><span class="header-section-number">1.2.5</span> Training the Model</a></li>
-  <li><a href="#evaluating-the-model" id="toc-evaluating-the-model" class="nav-link" data-scroll-target="#evaluating-the-model"><span class="header-section-number">1.2.6</span> Evaluating the Model</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">1.2.7</span> References</a></li>
-  </ul></li>
-  <li><a href="#model-checkpointing-saving-and-loading" id="toc-model-checkpointing-saving-and-loading" class="nav-link" data-scroll-target="#model-checkpointing-saving-and-loading"><span class="header-section-number">1.3</span> Model Checkpointing (Saving and Loading)</a></li>
-  <li><a href="#mixed-precision-training-float16-on-gpu" id="toc-mixed-precision-training-float16-on-gpu" class="nav-link" data-scroll-target="#mixed-precision-training-float16-on-gpu"><span class="header-section-number">1.4</span> Mixed-Precision Training (Float16 on GPU)</a>
-  <ul class="collapse">
-  <li><a href="#references-1" id="toc-references-1" class="nav-link" data-scroll-target="#references-1"><span class="header-section-number">1.4.1</span> References</a></li>
-  </ul></li>
-  <li><a href="#comparison-between-flux.jl-and-pytorch" id="toc-comparison-between-flux.jl-and-pytorch" class="nav-link" data-scroll-target="#comparison-between-flux.jl-and-pytorch"><span class="header-section-number">1.5</span> Comparison Between Flux.jl and PyTorch</a></li>
-  </ul></li>
-  </ul>
-</nav>
-</div>
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-</div>
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -128,10 +96,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="deep-learningai-in-julia" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Deep Learning/AI in Julia</h1>
-<section id="introduction" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.1</span> Introduction</h2>
+<section id="deep-learningai-in-julia" class="level1">
+<h1>Deep Learning/AI in Julia</h1>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Deep learning is a specialized subset of machine learning that uses multi-layered neural networks (often called deep neural networks) to learn complex patterns from data​. In this tutorial, we’ll introduce Flux.jl, a pure-Julia library for machine learning models (including deep neural networks)​, and walk through building, training, and evaluating a neural network on the classic MNIST dataset of handwritten digits.</p>
 <p><strong>This tutorial covers</strong>: 1. Environment setup and data preprocessing</p>
 <ol start="2" type="1">
@@ -146,8 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Training: Forward Pass (using a loss function), and adjust the model’s parameters (weights) to reduce this error (iterative gradient descent)</p></li>
 <li><p>Evaluation: Test set Evaluation on model’s performance (e.g., accuracy in classification)</p></li>
 </ul>
-<section id="what-is-flux.jl" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="what-is-flux.jl"><span class="header-section-number">1.1.1</span> What is Flux.jl</h3>
+<section id="what-is-flux.jl" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-flux.jl">What is Flux.jl</h3>
 <p>Flux.jl is an open-source machine learning library written entirely in Julia. It provides a flexible and intuitive framework for building neural networks (including feed-forward networks, convolutional networks, recurrent networks, etc.) in just a few lines of code, very similar to PyTorch. It integrates smoothly with the Julia language and has noticeable features such as automatic differentiation and GPU support.</p>
 <p>Some key characteristics of Flux.jl:</p>
 <ul>
@@ -157,10 +125,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="example" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="example"><span class="header-section-number">1.2</span> Example</h2>
-<section id="environment-set-up" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="environment-set-up"><span class="header-section-number">1.2.1</span> Environment Set Up</h3>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<section id="environment-set-up" class="level3">
+<h3 class="anchored" data-anchor-id="environment-set-up">Environment Set Up</h3>
 <p>We’ll use <strong>Flux</strong> for deep learning, <strong>CUDA</strong> for GPU support, and <strong>Plots</strong> for visualization. We’ll also use the <strong>MLDatasets</strong> which contains common datasets including MNIST</p>
 <div id="cell-9" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using Pkg</span></span>
@@ -223,8 +191,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>test_y_onehot_gpu <span class="op">=</span> <span class="fu">device</span>(test_y_onehot);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="building-a-neural-network-model-with-flux" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="building-a-neural-network-model-with-flux"><span class="header-section-number">1.2.2</span> Building a Neural Network Model with Flux</h3>
+<section id="building-a-neural-network-model-with-flux" class="level3">
+<h3 class="anchored" data-anchor-id="building-a-neural-network-model-with-flux">Building a Neural Network Model with Flux</h3>
 <p>Flux makes it easy to define neural network models —similar in spirit to the <code>custom nn.Module</code> example in PyTorch - using the <code>Chain</code> function, which combines layers (and functions) sequentially. A neural network can be thought of as a chain of layers, where each layer transforms its input to some output; these outputs become inputs to the next layer​. In Flux, <code>Chain</code> takes a list of layer constructors (or functions) and creates a callable model.</p>
 <p>For our MNIST classifier, we’ll build a simple feed-forward neural network (multi-layer perceptron) with one hidden layer: - <strong>Input layer</strong>: 28×28 pixels per image, which we will <strong>flatten</strong> into a 784-dimensional vector (this can be done with <code>Flux.flatten</code> as a layer in the chain) - <strong>Hidden layer</strong>: a fully connected dense layer with, say, 128 neurons and a ReLU activation. This layer will take the 784-dim input and produce 128 outputs. - <strong>Output layer</strong>: a dense layer with 10 neurons (one for each digit class) producing the raw scores for each class. We’ll later apply a softmax or appropriate loss to these scores to get class probabilities.</p>
 <div id="cell-23" class="cell">
@@ -240,8 +208,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We used <code>Chain</code> to stack three components: <code>flatten</code> (to convert 2D image to 1D vector), a <code>Dense</code> layer with 128 neurons and ReLU, and another <code>Dense</code> layer with 10 outputs. The <code>Dense(input_dim, output_dim, activation)</code> constructor creates a fully connected layer (it automatically initializes weights and biases). Here, the first Dense layer takes 784 inputs and gives 128 outputs with ReLU activation applied, and the second Dense layer takes 128 inputs and gives 10 outputs. We did not specify an activation for the output layer; in classification tasks, it’s common to apply a softmax at the end to interpret outputs as probabilities​, but we’ll handle that in the loss function for numerical stability instead of as a separate layer. (Alternatively, one could add <code>softmax</code> as the final layer in the Chain, but then one should use a corresponding loss that expects probabilities.)</p>
 <p>At this point, <code>model</code> is a Flux model that we can call like a function. For example, <code>model(train_x[:,:,1:5])</code> would output predictions for the first 5 images (though they would be untrained, random predictions initially). We haven’t trained the model yet, so if we tried to predict, the outputs would be basically random relative to the true labels​. Training will adjust the weights to make these predictions meaningful.</p>
-<section id="gpu-cpu-tensor" class="level4" data-number="1.2.2.1">
-<h4 data-number="1.2.2.1" class="anchored" data-anchor-id="gpu-cpu-tensor"><span class="header-section-number">1.2.2.1</span> GPU &amp; CPU Tensor</h4>
+<section id="gpu-cpu-tensor" class="level4">
+<h4 class="anchored" data-anchor-id="gpu-cpu-tensor">GPU &amp; CPU Tensor</h4>
 <div id="cell-27" class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> cpu_predictions <span class="op">=</span> <span class="fu">model</span>(test_x)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.668480 seconds (2.98 M allocations: 211.474 MiB, 79.97% compilation time)</span></span>
@@ -253,8 +221,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 0.000341 seconds (298 allocations: 6.703 KiB)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="performance-boost-with-lower-precision" class="level4" data-number="1.2.2.2">
-<h4 data-number="1.2.2.2" class="anchored" data-anchor-id="performance-boost-with-lower-precision"><span class="header-section-number">1.2.2.2</span> Performance Boost with Lower Precision</h4>
+<section id="performance-boost-with-lower-precision" class="level4">
+<h4 class="anchored" data-anchor-id="performance-boost-with-lower-precision">Performance Boost with Lower Precision</h4>
 <div id="cell-30" class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix multiplication with Float64</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>A64 <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">10000</span>, <span class="fl">10000</span>)</span>
@@ -270,8 +238,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="gradient" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="gradient"><span class="header-section-number">1.2.3</span> Gradient</h3>
+<section id="gradient" class="level3">
+<h3 class="anchored" data-anchor-id="gradient">Gradient</h3>
 <p>Defines a polynomial using a closure over the global vector <code>θ</code>. When we call <code>gradient(poly, 5.0)</code>, Flux computes the derivative of <code>poly</code> at 5.</p>
 <div id="cell-33" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Flux</span></span>
@@ -306,8 +274,8 @@ Gradient with respect to parameters: [1.0, 5.0, 25.0]</code></pre>
 </div>
 <p>Flux’s gradient function uses <a href="https://fluxml.ai/Zygote.jl/dev/">Zygote</a> by default, and also uses this function within <code>train!</code> to differentiate the model.</p>
 </section>
-<section id="defining-the-loss-function-and-optimizer" class="level3" data-number="1.2.4">
-<h3 data-number="1.2.4" class="anchored" data-anchor-id="defining-the-loss-function-and-optimizer"><span class="header-section-number">1.2.4</span> Defining the Loss Function and Optimizer</h3>
+<section id="defining-the-loss-function-and-optimizer" class="level3">
+<h3 class="anchored" data-anchor-id="defining-the-loss-function-and-optimizer">Defining the Loss Function and Optimizer</h3>
 <p><strong>Loss Function</strong>: For a multi-class classification problem like MNIST, a common choice of loss function is <strong>cross-entropy loss</strong>. Cross-entropy measures the difference between two probability distributions: in our case, the model’s predicted distribution over classes vs.&nbsp;the true distribution (which for a correct label is a one-hot vector)​. We will use Flux’s built-in cross-entropy implementations. Specifically, we will use <code>Flux.Losses.logitcrossentropy</code>, which expects the model’s <strong>raw output scores (logits)</strong> and the true one-hot vector, and internally applies the softmax and cross-entropy in a numerically stable way. This is equivalent to applying a softmax to get probabilities and then using crossentropy, but <code>logitcrossentropy</code> is preferred to avoid potential numerical issues.</p>
 <p><strong>Optimizer</strong>: We need to choose an optimization algorithm to update the model’s weights based on the gradients of the loss. A good default for neural networks is <strong>Adam</strong> (Adaptive Moment Estimation), which often converges faster than basic stochastic gradient descent​. We’ll use Flux’s <strong>ADAM optimizer</strong> with a modest learning rate.</p>
 <p>We also need to gather the model parameters into a container that the optimizer will update. Flux provides <code>params(model)</code> for that.</p>
@@ -329,8 +297,8 @@ Gradient with respect to parameters: [1.0, 5.0, 25.0]</code></pre>
 </ul>
 <p>Now we have all components ready for training: the model (<code>model</code>), the objective (<code>loss_function</code>), the data (<code>train_x</code> and <code>train_y_onehot</code>), and the optimizer (<code>opt</code>)​. We can proceed to train the model.</p>
 </section>
-<section id="training-the-model" class="level3" data-number="1.2.5">
-<h3 data-number="1.2.5" class="anchored" data-anchor-id="training-the-model"><span class="header-section-number">1.2.5</span> Training the Model</h3>
+<section id="training-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="training-the-model">Training the Model</h3>
 <p>Training a model in Flux typically involves iterating over the dataset multiple times (epochs) and updating the model parameters to gradually reduce the loss​. We have a few options for how to implement the training loop:</p>
 <ul>
 <li><p>Use <code>Flux.train!</code>, a convenience function that automates the loop over data points or batches</p></li>
@@ -374,8 +342,8 @@ Gradient with respect to parameters: [1.0, 5.0, 25.0]</code></pre>
 <p><strong>Note</strong>: With 5 epochs and a batch size of 128 on 60k examples, that’s about 5 * (60000/128) ≈ 5 * 469 batches, which is quite manageable on CPU for a small network and even faster with GPU (CuArrays).</p>
 <p><strong>Note</strong>: Training process above is its <strong>in-place</strong> modification of the model parameters, as demonstrated by the successive execution of two training phases: an initial run with 5 epochs followed by a subsequent run with 10 epochs. Flux performs parameter updates directly on the existing parameters object, accessed via <code>Flux.params(model)</code>.</p>
 </section>
-<section id="evaluating-the-model" class="level3" data-number="1.2.6">
-<h3 data-number="1.2.6" class="anchored" data-anchor-id="evaluating-the-model"><span class="header-section-number">1.2.6</span> Evaluating the Model</h3>
+<section id="evaluating-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="evaluating-the-model">Evaluating the Model</h3>
 <p>After training, we should assess how well the model generalizes to unseen data — in this case, the 10,000 images in our test set (which were not used for training). We’ll use the trained model to predict labels for the test images and then compute the accuracy: the fraction of images for which the predicted label matches the true label.We have a few ways to get predictions:</p>
 <ul>
 <li><p>We could get the raw scores from the model and take the index of the highest score (since the highest logit corresponds to the most likely class).</p></li>
@@ -393,15 +361,15 @@ Gradient with respect to parameters: [1.0, 5.0, 25.0]</code></pre>
 </div>
 <p>Here, <code>model(test_x)</code> produces a 10×10000 matrix of raw scores (each column corresponds to one test image). The <code>onecold(..., 0:9)</code> function finds the index of the largest score in each column and maps it to the corresponding label in <code>0:9</code>​. This gives a vector of 10000 predicted digit labels. We then compare this to the true labels and compute the proportion that are equal. The result is the accuracy (a number between 0 and 1, where 1.0 would mean 100% correct).</p>
 </section>
-<section id="references" class="level3" data-number="1.2.7">
-<h3 data-number="1.2.7" class="anchored" data-anchor-id="references"><span class="header-section-number">1.2.7</span> References</h3>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
 <ul>
 <li><a href="https://fluxml.ai/Flux.jl/stable/">Flux Manual</a></li>
 </ul>
 </section>
 </section>
-<section id="model-checkpointing-saving-and-loading" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="model-checkpointing-saving-and-loading"><span class="header-section-number">1.3</span> Model Checkpointing (Saving and Loading)</h2>
+<section id="model-checkpointing-saving-and-loading" class="level2">
+<h2 class="anchored" data-anchor-id="model-checkpointing-saving-and-loading">Model Checkpointing (Saving and Loading)</h2>
 <p>Long training runs should save model checkpoints periodically (e.g., every few epochs) to guard against crashes and to enable later analysis or fine-tuning. Rather than saving the entire model (which can lead to compatibility issues over time), a recommended approach is to save only the model’s parameters. In our example, we use the BSON format to store a CPU copy of the model’s parameters along with the current epoch. This is achieved by converting the model parameters to CPU-friendly Float32 arrays using <code>cpu.(Flux.params(model))</code>.</p>
 <p>Later,to resume training or fine-tune the model, we reload the checkpoint using BSON, move the parameters back to the GPU (if available) with <code>gpu.(model_params)</code>, and then update the model with <code>Flux.loadparams!(model, model_params)</code>.</p>
 <div id="cell-55" class="cell">
@@ -512,14 +480,14 @@ Gradient with respect to parameters: [1.0, 5.0, 25.0]</code></pre>
 </div>
 <p><img src="Retrain.png" alt="Model Checkpoint" style="max-width:100%; width:1000px; height:auto;"></p>
 </section>
-<section id="mixed-precision-training-float16-on-gpu" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="mixed-precision-training-float16-on-gpu"><span class="header-section-number">1.4</span> Mixed-Precision Training (Float16 on GPU)</h2>
+<section id="mixed-precision-training-float16-on-gpu" class="level2">
+<h2 class="anchored" data-anchor-id="mixed-precision-training-float16-on-gpu">Mixed-Precision Training (Float16 on GPU)</h2>
 <p>Modern GPUs can achieve higher throughput with lower precision (FP16/BFloat16) using tensor cores.</p>
 <p>Flux can leverage this by training with Float16 weights and gradients (mixed precision). This reduces memory usage and can significantly speed up math-intensive models on supported GPUs​.</p>
 <p>The main idea is to perform the forward pass and gradient computations in FP16 (for speed) while maintaining an `FP32 “master copy” of the weights.</p>
 <p>During updates, gradients are cast to FP32 so that the weight update 𝑤 = 𝑤 − 𝜂 × grad is computed in higher precision.</p>
-<section id="the-problem-with-pure-fp16-training" class="level4" data-number="1.4.0.1">
-<h4 data-number="1.4.0.1" class="anchored" data-anchor-id="the-problem-with-pure-fp16-training"><span class="header-section-number">1.4.0.1</span> The Problem with Pure FP16 Training</h4>
+<section id="the-problem-with-pure-fp16-training" class="level4">
+<h4 class="anchored" data-anchor-id="the-problem-with-pure-fp16-training">The Problem with Pure FP16 Training</h4>
 <p>When casting both data and model parameters entirely to FP16—especially when also normalizing inputs (e.g.&nbsp;dividing by 255)— risk running into severe precision issues.</p>
 <p>FP16 only provides about 3 decimal digits of precision, and small gradient values or scaling operations can cause underflow or rounding errors that accumulate during backpropagation. resulting in <code>NaN</code> or <code>InF</code> Loss.</p>
 <pre><code># Convert model parameters to FP16
@@ -546,8 +514,8 @@ for epoch in 1:5
     println("Epoch $epoch complete. Sample training loss = $train_loss")
 end</code></pre>
 </section>
-<section id="mixed-precision-with-an-fp32-master-copy" class="level4" data-number="1.4.0.2">
-<h4 data-number="1.4.0.2" class="anchored" data-anchor-id="mixed-precision-with-an-fp32-master-copy"><span class="header-section-number">1.4.0.2</span> Mixed Precision with an FP32 Master Copy</h4>
+<section id="mixed-precision-with-an-fp32-master-copy" class="level4">
+<h4 class="anchored" data-anchor-id="mixed-precision-with-an-fp32-master-copy">Mixed Precision with an FP32 Master Copy</h4>
 <ol type="1">
 <li>Model Initialization:
 <ul>
@@ -709,8 +677,8 @@ end</code></pre>
 </div>
 </div>
 </section>
-<section id="gradient-scaling-optional" class="level4" data-number="1.4.0.3">
-<h4 data-number="1.4.0.3" class="anchored" data-anchor-id="gradient-scaling-optional"><span class="header-section-number">1.4.0.3</span> Gradient Scaling (Optional)</h4>
+<section id="gradient-scaling-optional" class="level4">
+<h4 class="anchored" data-anchor-id="gradient-scaling-optional">Gradient Scaling (Optional)</h4>
 <p>In some cases, especially when the loss is very small, you might apply a loss scaling factor to prevent gradient underflow in FP16.</p>
 <ol type="1">
 <li><strong>Add a loss scaling factor</strong> which multiply the loss before backpropagation</li>
@@ -776,16 +744,16 @@ end</code></pre>
 <span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="references-1" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="references-1"><span class="header-section-number">1.4.1</span> References</h3>
+<section id="references-1" class="level3">
+<h3 class="anchored" data-anchor-id="references-1">References</h3>
 <ul>
 <li><p><a href="https://www.dropbox.com/scl/fi/xk8bc4l68oyuxhbzsnrwh/Case-Mixed-Precision-Training-NeurIPS-Expo.pdf?rlkey=jee9fp9mkus03pinbb6xj5kqz&amp;e=3&amp;dl=0">NVIDIA Mixed Precision Training Guidelines</a></p></li>
 <li><p><a href="https://forums.fast.ai/t/mixed-precision-training/20720/1">Mixed Precision Training Conceptual Understanding</a></p></li>
 </ul>
 </section>
 </section>
-<section id="comparison-between-flux.jl-and-pytorch" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="comparison-between-flux.jl-and-pytorch"><span class="header-section-number">1.5</span> Comparison Between Flux.jl and PyTorch</h2>
+<section id="comparison-between-flux.jl-and-pytorch" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-between-flux.jl-and-pytorch">Comparison Between Flux.jl and PyTorch</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">

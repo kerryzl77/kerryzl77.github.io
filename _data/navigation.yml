@@ -22,6 +22,9 @@ main:
     
   - title: "CV"
     url: /cv/
+
+  - title: "Deep Learning"
+    url: /DeepLearningJulia/
     
   # - title: "Guide"
   #   url: /markdown/
