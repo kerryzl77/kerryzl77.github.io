@@ -24,7 +24,7 @@ main:
     url: /cv/
 
   - title: "Deep Learning with Julia"
-    url: /deeplearning-julia/
+    url: /deeplearning-julia/DeepLearningJulia.html
     
   # - title: "Guide"
   #   url: /markdown/
