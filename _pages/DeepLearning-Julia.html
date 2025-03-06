@@ -150,7 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">size</span>(test_x))    <span class="co"># Expect (28, 28, 10000) - 10k test images</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">size</span>(test_y))    <span class="co"># Expect (10000,) - 10k test labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><img src="Minist.png" alt="Loss Curve" style="max-width:100%; width:600px; height:auto;"></p>
+<p><img src="/images/Minist.png" alt="Loss Curve" style="max-width:100%; width:600px; height:auto;"></p>
 <p><strong>Explanation</strong>: The MNIST dataset consists of grayscale images of handwritten digits 0 through 9, each image being 28x28 pixels​. The code above loads <code>train_x</code> and <code>train_y</code> as the training set images and labels, and similarly <code>test_x</code> and <code>test_y</code> for the test set. According to the dataset, there are 60,000 training examples and 10,000 test examples​, which matches the printed shapes:</p>
 <ul>
 <li><p><code>train_x</code> is a 28×28×60000 array (the third dimension indexes the images).</p></li>
@@ -169,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(train_y[<span class="fl">1</span>], <span class="st">" -&gt; "</span>, <span class="fu">vec</span>(train_y_onehot[<span class="op">:</span>,<span class="fl">1</span>])) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><img src="OneHot.png" alt="My Plot" style="max-width:100%; width:800px; height:auto;"></p>
+<p><img src="/images/OneHot.png" alt="My Plot" style="max-width:100%; width:800px; height:auto;"></p>
 <p><strong>Explanation</strong>: We used <code>Float32.(train_x)</code> to broadcast conversion of each element to <code>Float32</code>.</p>
 <p>If the original pixel values were 0-255, converting to <code>Float32</code> will yield 0.0-255.0; if they were <code>N0f8</code> (0.0-1.0 in an 8-bit format), the conversion yields 0.0-1.0 floats. In either case, a neural network can work with these scaled inputs (though if it were 0-255, we might explicitly divide by 255 to scale to [0,1]). This may be an issue when coming into lower precision such as <code>Float16</code> as we will discuss later.</p>
 <p>One-hot encoding is done via <code>Flux.onehotbatch(labels, 0:9)</code>, which produces a 10-row matrix where each column is a one-hot representation of the corresponding label</p>
