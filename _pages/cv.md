@@ -13,9 +13,10 @@ Education
 ======
 * **University of California, Berkeley**, Berkeley, U.S.  
   Master of Engineering in Industrial Engineering & Operational Research (Expected May 2025)  
-  * Award: Fung Excellence Scholarship  
+  * Award: Fung Excellence Scholarship
+  * Teaching: TA for Info 159/259 Natural Language Processing
   * Capstone: Deep Learning Time Series Forecasting (Transformers / DeepAR)  
-  * Relevant Modules: Optimization, Stochastic Processes, NLP, Revenue Management, Entrepreneurship (Haas MBA)
+  * Relevant Modules: Optimization, Stochastic Processes, Revenue Management, Back-End Web Architecture, Computer Vision (PhD), Entrepreneurship (Haas MBA)
 
 * **University of St Andrews**, St Andrews, UK  
   Master of Arts (Honours) in Mathematics (Sep 2020 – Jun 2024)  
@@ -27,7 +28,7 @@ Work Experience
 * **VIP.com**, Guangzhou, China  
   Data Science Intern, E-commerce Product Technology R&D (Jun 2024 – Aug 2024)  
   * Developed PySpark workflows to compare delivery metrics, reducing shipment time by 27%.
-  * Integrated RAG models to automate return responsibility analysis, achieving 98% accuracy.
+  * Integrated DeepSeek V2 few-shot classifier RAG models to automate return responsibility analysis, achieving 98% accuracy.
 
 * **Amazon**, London, UK  
   Business Analyst Intern, EU Customer Order Forecasting (May 2023 – Sep 2023)  
