@@ -60,7 +60,7 @@ Skills and Languages
 Publications
 ======
 * [Sequential Monte Carlo Methods in Spatio-Temporal Modeling](https://github.com/kerryzl77/SMC-SSM/blob/main/Sequential_Monte_Carlo_Methods.pdf)  
-* [Classification of Product Manager Types in the Job Market](https://github.com/kerryzl77/Machine-Learning/blob/main/Job%20Classification%20/Info256_Midterm_Report.pdf)  
+* [Classification of Product Manager Types in the Job Market](https://github.com/kerryzl77/BERT-PM-Classification/blob/main/Classification%20of%20Product%20Manager%20Types%20to%20Understand%20the%20Job%20Market.pdf)  
 
 <!-- Talks
 ======
