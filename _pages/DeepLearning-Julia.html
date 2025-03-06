@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Deep Learning with Julia</title>
+<title>Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,42 +71,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body>
+<body class="fullcontent">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-  <li><a href="#what-is-flux.jl" id="toc-what-is-flux.jl" class="nav-link" data-scroll-target="#what-is-flux.jl">What is Flux.jl</a></li>
-  </ul></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a>
-  <ul class="collapse">
-  <li><a href="#environment-set-up" id="toc-environment-set-up" class="nav-link" data-scroll-target="#environment-set-up">Environment Set Up</a></li>
-  <li><a href="#building-a-neural-network-model-with-flux" id="toc-building-a-neural-network-model-with-flux" class="nav-link" data-scroll-target="#building-a-neural-network-model-with-flux">Building a Neural Network Model with Flux</a></li>
-  <li><a href="#gradient" id="toc-gradient" class="nav-link" data-scroll-target="#gradient">Gradient</a></li>
-  <li><a href="#defining-the-loss-function-and-optimizer" id="toc-defining-the-loss-function-and-optimizer" class="nav-link" data-scroll-target="#defining-the-loss-function-and-optimizer">Defining the Loss Function and Optimizer</a></li>
-  <li><a href="#training-the-model" id="toc-training-the-model" class="nav-link" data-scroll-target="#training-the-model">Training the Model</a></li>
-  <li><a href="#evaluating-the-model" id="toc-evaluating-the-model" class="nav-link" data-scroll-target="#evaluating-the-model">Evaluating the Model</a></li>
-  </ul></li>
-  <li><a href="#model-checkpointing-saving-and-loading" id="toc-model-checkpointing-saving-and-loading" class="nav-link" data-scroll-target="#model-checkpointing-saving-and-loading">Model Checkpointing (Saving and Loading)</a></li>
-  <li><a href="#mixed-precision-training-float16-on-gpu" id="toc-mixed-precision-training-float16-on-gpu" class="nav-link" data-scroll-target="#mixed-precision-training-float16-on-gpu">Mixed-Precision Training (Float16 on GPU)</a>
-  <ul class="collapse">
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul></li>
-  <li><a href="#comparison-between-flux.jl-and-pytorch" id="toc-comparison-between-flux.jl-and-pytorch" class="nav-link" data-scroll-target="#comparison-between-flux.jl-and-pytorch">Comparison Between Flux.jl and PyTorch</a></li>
-  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a></li>
-  </ul>
-</nav>
-</div>
+
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Deep Learning with Julia</h1>
+<h1 class="title">Introduction</h1>
 </div>
 
 
@@ -123,8 +96,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Deep learning is a specialized subset of machine learning that uses multi-layered neural networks (often called deep neural networks) to learn complex patterns from data​. In this tutorial, we’ll introduce <strong>Flux.jl</strong>, a pure-Julia library for machine learning models (including deep neural networks)​, and walk through building, training, and evaluating a neural network on the classic MNIST dataset of handwritten digits.</p>
 <p><strong>This tutorial covers</strong>:</p>
 <ol type="1">
@@ -150,7 +121,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Gradients and Training</strong>: Flux handles backpropagation (gradient calculation) for you via Julia’s automatic differentiation (AD) system. You just define a loss function, and Flux can compute gradients and update parameters using optimizers (like SGD, Adam).</p></li>
 <li><p><strong>Integration with Julia Ecosystem</strong>: Rather than being a monolithic framework, Flux works with other Julia packages. For example, it uses MLDatasets.jl for easy data loading (which we’ll use for MNIST) and allows using any Julia array type (CPU or GPU arrays, etc.) seamlessly​</p></li>
 </ul>
-</section>
 </section>
 <section id="example" class="level2">
 <h2 class="anchored" data-anchor-id="example">Example</h2>
