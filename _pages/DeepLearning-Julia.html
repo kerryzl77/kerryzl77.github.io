@@ -64,22 +64,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="/assets/DeepLearning-Julia_files/libs/clipboard/clipboard.min.js"></script>
-<script src="/assets/DeepLearning-Julia_files/libs/quarto-html/quarto.js"></script>
-<script src="/assets/DeepLearning-Julia_files/libs/quarto-html/popper.min.js"></script>
-<script src="/assets/DeepLearning-Julia_files/libs/quarto-html/tippy.umd.min.js"></script>
+<!-- <script src="/assets/DeepLearning-Julia_files/libs/quarto-html/quarto.js"></script> -->
+<!-- <script src="/assets/DeepLearning-Julia_files/libs/quarto-html/popper.min.js"></script> -->
+<!-- <script src="/assets/DeepLearning-Julia_files/libs/quarto-html/tippy.umd.min.js"></script> -->
 <script src="/assets/DeepLearning-Julia_files/libs/quarto-html/anchor.min.js"></script>
 <link href="/assets/DeepLearning-Julia_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="/assets/DeepLearning-Julia_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="/assets/DeepLearning-Julia_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="/assets/DeepLearning-Julia_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="/assets/DeepLearning-Julia_files/libs/bootstrap/bootstrap-973236bd072d72a04ee9cd82dcc9cb29.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="/assets/DeepLearning-Julia_files/libs/bootstrap/bootstrap-973236bd072d72a04ee9cd82dcc9cb29.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<!-- <link href="/assets/DeepLearning-Julia_files/libs/bootstrap/bootstrap-973236bd072d72a04ee9cd82dcc9cb29.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"> -->
+
 
 
 </head>
 
-<body class="fullcontent">
+<body>
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<!-- <div id="quarto-content" class="page-columns page-rows-contents page-layout-article"> -->
+<div id="quarto-content" class="page-layout-article">
 
 <main class="content" id="quarto-document-content">
 
@@ -357,9 +360,9 @@ Gradient with respect to parameters: [1.0, 5.0, 25.0]</code></pre>
 <span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>          ylabel<span class="op">=</span><span class="st">"Loss"</span>, </span>
 <span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>          linewidth<span class="op">=</span><span class="fl">2</span>, </span>
 <span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>          marker<span class="op">=:</span>circle)</span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="fu">savefig</span>(p1, <span class="st">"loss_plot.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="fu">savefig</span>(p1, <span class="st">"/images/loss_plot.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><img src="loss_plot.png" alt="Loss Curve" style="max-width:100%; width:600px; height:auto;"></p>
+<p><img src="/images/loss_plot.png" alt="Loss Curve" style="max-width:100%; width:600px; height:auto;"></p>
 <p><strong>Explanation</strong>: We constructed <code>train_loader</code> by passing a tuple <code>(train_x, train_y_onehot)</code> to <code>DataLoader</code>, with a batch size of 128 and <code>shuffle=true</code> to randomize order each epoch. In the training loop, for each epoch we loop over <code>train_loader</code>, which yields batches <code>(x_batch, y_batch)</code> of size 128. We then call <code>Flux.train!(loss_function, parameters, [(x_batch, y_batch)], opt)</code> to perform parameter updates for that batch. The <code>train!</code> function will compute the gradient of <code>loss_function(x_batch, y_batch)</code> with respect to <code>parameters</code> and update them using the Adam optimizer​.</p>
 <p>We print sample training loss on a subset of data after each epoch. As the epochs progress, we observe the loss decreasing, indicating that the model is learning.</p>
 <p><strong>Note</strong>: With 5 epochs and a batch size of 128 on 60k examples, that’s about 5 * (60000/128) ≈ 5 * 469 batches, which is quite manageable on CPU for a small network and even faster with GPU (CuArrays).</p>
@@ -495,7 +498,7 @@ Gradient with respect to parameters: [1.0, 5.0, 25.0]</code></pre>
 <span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Training complete at epoch </span><span class="sc">$</span>(current_epoch <span class="op">+</span> final_epoch)<span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><img src="Retrain.png" alt="Model Checkpoint" style="max-width:100%; width:1000px; height:auto;"></p>
+<p><img src="/images/Retrain.png" alt="Model Checkpoint" style="max-width:100%; width:1000px; height:auto;"></p>
 </section>
 <section id="mixed-precision-training-float16-on-gpu" class="level2">
 <h2 class="anchored" data-anchor-id="mixed-precision-training-float16-on-gpu">Mixed-Precision Training (Float16 on GPU)</h2>
