@@ -42,6 +42,15 @@ author_profile: true
 	max-width: 100% !important;
 }
 
+/* Keep long-form reading comfortable on very wide screens */
+@media (min-width: 64em) {
+	.agent-loop-notion article.page {
+		max-width: 60rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
 /* Fix code wrapping (avoid mid-word breaks). Use horizontal scroll instead. */
 .agent-loop-notion pre,
 .agent-loop-notion pre code,
@@ -470,8 +479,10 @@ author_profile: true
 }
 
 .agent-loop-notion .code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
+	white-space: pre !important;
+	word-break: normal !important;
+	overflow-wrap: normal !important;
+	overflow-x: auto;
 }
 
 .agent-loop-notion .code > code {
@@ -1150,50 +1161,138 @@ PYTHONPATH=&quot;$(pwd)/src&quot; ./.venv/bin/python examples/agents.py</code></
 </p></div><div style="display:contents" dir="auto"><h3 id="2dcd8e84-2ff9-8019-87d7-ea3160fab44d" class=""><strong>Where this breaks first: tool schema overload</strong><br/></h3></div><div style="display:contents" dir="auto"><p id="2dcd8e84-2ff9-8017-b867-ce7eed99d758" class="">If you choose the “prompted tool calling” route, you typically end up stuffing <em>all</em> tool definitions (names, parameters, descriptions) into the system prompt so the model can produce valid calls. </p></div><div style="display:contents" dir="auto"><p id="2dcd8e84-2ff9-80a0-818e-eea62700927d" class="">This is the <strong>context overload</strong> issue people hit in early versions of coding agents (Claude Code is a good example): once you have 20+ tools (or worse, hundreds), you burn tokens on tool schemas, and tool selection starts to degrade.</p></div><div style="display:contents" dir="auto"><p id="2dcd8e84-2ff9-80ce-91e7-d1b3371ca3ec" class="">So how do we deal with it? That’s exactly what we’ll answer in <a href="https://www.notion.so/The-Agent-Loop-Explained-How-Modern-LLM-Apps-Orchestrate-Tools-2dbd8e842ff9802d8e6dda3c3ca35283?pvs=21">previous section</a> (tool overload + routing + “tool search” / tool catalog retrieval).</p></div><div style="display:contents" dir="auto"><h2 id="2dbd8e84-2ff9-801f-9c49-eb4983ee999a" class="">References</h2></div><div style="display:contents" dir="auto"><p id="2dbd8e84-2ff9-8000-9eef-f2ac8382e404" class="">[1] OpenAI Tool Call: <a href="https://platform.openai.com/docs/guides/function-calling">https://platform.openai.com/docs/guides/function-calling</a></p></div><div style="display:contents" dir="auto"><p id="2dbd8e84-2ff9-8000-9a52-ebd16723ee9a" class="">[2] ReAct: <a href="https://arxiv.org/pdf/2210.03629">https://arxiv.org/pdf/2210.03629</a></p></div><div style="display:contents" dir="auto"><p id="2dbd8e84-2ff9-80a0-b9b9-d244af083345" class="">[3] LlamaIndex ReAct <a href="https://developers.llamaindex.ai/python/examples/agent/react_agent/?utm_source=chatgpt.com">https://developers.llamaindex.ai/python/examples/agent/react_agent/?utm_source=chatgpt.com</a></p></div><div style="display:contents" dir="auto"><p id="2dcd8e84-2ff9-8097-93da-da017ac1a776" class="">[4] <a href="https://platform.openai.com/docs/guides/conversation-state">https://platform.openai.com/docs/guides/conversation-state</a></p></div><div style="display:contents" dir="auto"><p id="2dbd8e84-2ff9-8072-b60c-c6703e5f9f3d" class="">[5] <a href="https://cookbook.openai.com/examples/mcp/mcp_tool_guide">https://cookbook.openai.com/examples/mcp/mcp_tool_guide</a></p></div><div style="display:contents" dir="auto"><p id="2dcd8e84-2ff9-80dc-ace2-cd4994c348f6" class="">[6] Opus 4.5 Tool Search <a href="https://www.anthropic.com/engineering/advanced-tool-use">https://www.anthropic.com/engineering/advanced-tool-use</a></p></div><div style="display:contents" dir="auto"><p id="2dcd8e84-2ff9-806e-a029-fb61d38f4994" class="">[7] <a href="https://code.claude.com/docs/en/sub-agents">https://code.claude.com/docs/en/sub-agents</a></p></div><div style="display:contents" dir="auto"><p id="2dcd8e84-2ff9-803c-ad76-c297059242a6" class="">[8] <a href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf">https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf</a></p></div><div style="display:contents" dir="auto"><p id="2dcd8e84-2ff9-80f3-8cbb-c8bac5eaf17a" class="">[9] <a href="https://temporal.io/blog/of-course-you-can-build-dynamic-ai-agents-with-temporal?utm_source=chatgpt.com">https://temporal.io/blog/of-course-you-can-build-dynamic-ai-agents-with-temporal?utm_source=chatgpt.com</a></p></div><div style="display:contents" dir="auto"><p id="2dcd8e84-2ff9-80f7-9395-e1c292eb0036" class="">[10] <a href="https://platform.openai.com/docs/guides/structured-outputs?example=moderation">https://platform.openai.com/docs/guides/structured-outputs?example=moderation</a></p></div><div style="display:contents" dir="auto"><p id="2dcd8e84-2ff9-80d0-a1a0-cc8219bb8216" class="">[11] <a href="https://github.com/openai/openai-agents-python/blob/main/src/agents/agent.py">https://github.com/openai/openai-agents-python/blob/main/src/agents/agent.py</a></p></div><div style="display:contents" dir="auto"><p id="2dbd8e84-2ff9-80c0-af5e-f88b26083dd4" class="">[12] <a href="https://github.com/openai/openai-agents-python/blob/main/src/agents/run.py">https://github.com/openai/openai-agents-python/blob/main/src/agents/run.py</a></p></div><div style="display:contents" dir="auto"><p id="2dcd8e84-2ff9-8085-adac-e0157b05f52c" class="">[13] <a href="https://github.com/openai/openai-agents-python/blob/main/examples/customer_service/main.py">https://github.com/openai/openai-agents-python/blob/main/examples/customer_service/main.py</a></p></div><div style="display:contents" dir="auto"><p id="2dcd8e84-2ff9-8023-8ec3-cef124e91e84" class="">[14] <a href="https://github.com/anthropics/claude-agent-sdk-python/blob/main/examples/agents.py">https://github.com/anthropics/claude-agent-sdk-python/blob/main/examples/agents.py</a></p></div><div style="display:contents" dir="auto"><p id="2dcd8e84-2ff9-80cd-9c2a-ee567dfeb73f" class="">[15] <a href="https://github.com/anthropics/claude-agent-sdk-python/blob/main/examples/tool_permission_callback.py">https://github.com/anthropics/claude-agent-sdk-python/blob/main/examples/tool_permission_callback.py</a></p></div><div style="display:contents" dir="auto"><p id="2dcd8e84-2ff9-801c-8923-e6ae29151968" class="">
 </p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
 
+<!-- Prism syntax highlighting (autoload languages like Python/Bash) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin="anonymous" referrerPolicy="no-referrer"></script>
+
 <!-- Mermaid renderer (converts the Mermaid code block into a diagram) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js" crossorigin="anonymous" referrerPolicy="no-referrer"></script>
 <script>
   (function () {
-    function renderMermaid() {
-      if (typeof mermaid === "undefined") return;
+    function getLanguage(codeEl) {
+      var className = (codeEl && codeEl.className) ? String(codeEl.className) : "";
+      var match = className.match(/language-([\w-]+)/i);
+      var lang = match && match[1] ? match[1].toLowerCase() : "";
 
-      mermaid.initialize({
-        startOnLoad: false,
-        theme: "neutral",
-        securityLevel: "loose",
+      // Notion exports "Plain Text" as two classes: "language-Plain" + "Text"
+      if (lang === "plain" && codeEl.classList && codeEl.classList.contains("Text")) {
+        return "none";
+      }
+
+      if (lang === "plaintext" || lang === "plain-text") return "none";
+      if (lang === "mermaid") return "mermaid";
+
+      return lang;
+    }
+
+    function normalizeCodeBlocks(root) {
+      var codeBlocks = root.querySelectorAll("pre > code, code");
+      codeBlocks.forEach(function (codeEl) {
+        if (!codeEl.classList) return;
+
+        var lang = getLanguage(codeEl);
+        if (!lang) return;
+
+        // Normalize common languages to Prism component ids
+        if (lang === "py" || lang === "python") lang = "python";
+        if (lang === "sh" || lang === "shell" || lang === "bash") lang = "bash";
+
+        // Ensure class uses the canonical lower-case form
+        Array.from(codeEl.classList).forEach(function (c) {
+          if (/^language-/i.test(c)) codeEl.classList.remove(c);
+        });
+        codeEl.classList.add("language-" + lang);
+
+        // Prism theme also keys off the <pre> language class (optional but nice)
+        var pre = codeEl.closest && codeEl.closest("pre");
+        if (pre && pre.classList) {
+          Array.from(pre.classList).forEach(function (c) {
+            if (/^language-/i.test(c)) pre.classList.remove(c);
+          });
+          pre.classList.add("language-" + lang);
+        }
       });
+    }
 
-      var blocks = document.querySelectorAll(
-        ".agent-loop-notion pre code.language-Mermaid, .agent-loop-notion pre code.language-mermaid"
+    function convertMermaidBlocks(root) {
+      var blocks = root.querySelectorAll(
+        "pre > code.language-mermaid, pre > code.language-Mermaid, code.language-mermaid, code.language-Mermaid"
       );
 
       blocks.forEach(function (codeEl) {
-        var pre = codeEl.closest("pre");
-        if (!pre) return;
+        var lang = getLanguage(codeEl);
+        if (lang !== "mermaid") return;
 
+        var pre = codeEl.closest && codeEl.closest("pre");
         var src = codeEl.textContent || "";
+        if (!src.trim()) return;
+
         var container = document.createElement("div");
         container.className = "mermaid";
         container.textContent = src;
 
-        // Preserve the original element id if present (for deep links/debugging)
-        if (pre.id) container.id = pre.id;
+        // Preserve original id (for deep links/debugging)
+        if (pre && pre.id) container.id = pre.id;
 
-        pre.replaceWith(container);
+        if (pre && pre.parentNode) {
+          pre.replaceWith(container);
+        } else if (codeEl && codeEl.parentNode) {
+          codeEl.replaceWith(container);
+        }
       });
+    }
 
-      // Render all mermaid nodes we just created
-      if (typeof mermaid.run === "function") {
-        mermaid.run({ querySelector: ".agent-loop-notion .mermaid" });
-      } else if (typeof mermaid.init === "function") {
-        mermaid.init(undefined, document.querySelectorAll(".agent-loop-notion .mermaid"));
+    function run() {
+      var root = document.querySelector(".agent-loop-notion") || document;
+
+      // 1) Normalize language classnames so Prism autoloader can find components.
+      normalizeCodeBlocks(root);
+
+      // 2) Convert Mermaid code blocks into <div class="mermaid"> nodes.
+      convertMermaidBlocks(root);
+
+      // 3) Render Mermaid diagrams (if Mermaid loaded).
+      if (typeof mermaid !== "undefined") {
+        try {
+          mermaid.initialize({
+            startOnLoad: false,
+            theme: "neutral",
+            securityLevel: "loose",
+          });
+
+          if (typeof mermaid.run === "function") {
+            mermaid.run({ querySelector: ".agent-loop-notion .mermaid" });
+          } else if (typeof mermaid.init === "function") {
+            mermaid.init(undefined, document.querySelectorAll(".agent-loop-notion .mermaid"));
+          }
+        } catch (e) {
+          // Fail soft: keep the source text visible if rendering fails.
+          console.warn("Mermaid render failed:", e);
+        }
+      }
+
+      // 4) Prism highlight (autoload missing languages like python/bash).
+      if (typeof Prism !== "undefined") {
+        try {
+          if (Prism.plugins && Prism.plugins.autoloader) {
+            Prism.plugins.autoloader.languages_path =
+              "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/";
+          }
+
+          if (typeof Prism.highlightAllUnder === "function") {
+            Prism.highlightAllUnder(root);
+          } else if (typeof Prism.highlightAll === "function") {
+            Prism.highlightAll();
+          }
+        } catch (e) {
+          console.warn("Prism highlight failed:", e);
+        }
       }
     }
 
     if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", renderMermaid);
+      document.addEventListener("DOMContentLoaded", run);
     } else {
-      renderMermaid();
+      run();
     }
   })();
 </script>
