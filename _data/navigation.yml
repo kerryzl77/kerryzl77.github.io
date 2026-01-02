@@ -26,7 +26,7 @@ main:
   - title: "Deep Learning with Julia"
     url: /deeplearning-julia/
 
-  - title: "Agent Loop"
+  - title: "Agent"
     url: /agent-loop/
     
   # - title: "Guide"
