@@ -42,13 +42,13 @@ author_profile: true
 	max-width: 100% !important;
 }
 
-/* Keep long-form reading comfortable on very wide screens */
-@media (min-width: 64em) {
-	.agent-loop-notion article.page {
-		max-width: 60rem;
-		margin-left: auto;
-		margin-right: auto;
-	}
+/* Let the Notion-exported <article class="page"> fill the theme content column.
+   Notion adds large side padding which makes the page feel too narrow. */
+.agent-loop-notion article.page {
+	width: 100% !important;
+	max-width: 100% !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
 }
 
 /* Fix code wrapping (avoid mid-word breaks). Use horizontal scroll instead. */
@@ -62,6 +62,33 @@ author_profile: true
 }
 .agent-loop-notion pre {
 	overflow-x: auto !important;
+}
+
+/* Code block copy button (similar UX to DeepLearning-Julia page) */
+.agent-loop-notion pre {
+	position: relative;
+}
+.agent-loop-notion .agent-loop-copy-btn {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	z-index: 2;
+	font-size: 0.75rem;
+	line-height: 1;
+	padding: 0.35rem 0.5rem;
+	border-radius: 6px;
+	border: 1px solid rgba(0, 0, 0, 0.18);
+	background: rgba(255, 255, 255, 0.85);
+	color: #222;
+	cursor: pointer;
+	-webkit-backdrop-filter: blur(6px);
+	backdrop-filter: blur(6px);
+}
+.agent-loop-notion .agent-loop-copy-btn:hover {
+	background: rgba(255, 255, 255, 0.98);
+}
+.agent-loop-notion .agent-loop-copy-btn:active {
+	transform: translateY(1px);
 }
 
 /* Mermaid render container (responsive) */

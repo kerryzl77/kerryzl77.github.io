@@ -121,6 +121,79 @@
     }
   }
 
+  function copyToClipboard(text) {
+    if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+
+    // Fallback for older browsers / non-secure contexts
+    return new Promise(function (resolve, reject) {
+      try {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "true");
+        ta.style.position = "fixed";
+        ta.style.top = "-9999px";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+        if (ok) resolve();
+        else reject(new Error("execCommand(copy) failed"));
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  function addCopyButtons(root) {
+    var pres = root.querySelectorAll("pre");
+    pres.forEach(function (pre) {
+      // Only add to real code blocks
+      var codeEl = pre.querySelector("code");
+      if (!codeEl) return;
+
+      // Avoid duplicates on reruns
+      if (pre.querySelector("button.agent-loop-copy-btn")) return;
+
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "agent-loop-copy-btn";
+      btn.setAttribute("aria-label", "Copy code");
+      btn.title = "Copy to clipboard";
+      btn.textContent = "Copy";
+
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var text = (codeEl.textContent || "").replace(/\s+$/, "\n");
+        var original = btn.textContent;
+        btn.textContent = "Copying…";
+        btn.disabled = true;
+
+        copyToClipboard(text)
+          .then(function () {
+            btn.textContent = "Copied!";
+            setTimeout(function () {
+              btn.textContent = original;
+              btn.disabled = false;
+            }, 1200);
+          })
+          .catch(function () {
+            btn.textContent = "Failed";
+            setTimeout(function () {
+              btn.textContent = original;
+              btn.disabled = false;
+            }, 1500);
+          });
+      });
+
+      pre.appendChild(btn);
+    });
+  }
+
   function run() {
     var root = document.querySelector(".agent-loop-notion");
     if (!root) return;
@@ -132,6 +205,9 @@
     // Then ensure Prism highlights remaining code blocks.
     normalizePrismClasses(root);
     highlightPrism(root);
+
+    // Add copy buttons (DeepLearning-Julia style UX)
+    addCopyButtons(root);
   }
 
   // Run early, and also retry after load (Prism/Mermaid may load late).
