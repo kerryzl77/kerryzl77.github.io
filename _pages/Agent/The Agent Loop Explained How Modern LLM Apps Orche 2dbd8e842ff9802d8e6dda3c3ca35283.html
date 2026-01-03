@@ -37,6 +37,18 @@ author_profile: false
 }
 
 /* --- GitHub Pages UI overrides (minimal surgery) --- */
+/* Standalone page layout: center the content column and hide the redundant theme title ("Agent"). */
+#main > .archive {
+	float: none !important;
+	width: 100% !important;
+	max-width: 740px !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+#main > .archive > .page__title {
+	display: none !important;
+}
+
 /* Make the article use the available width in the theme content column */
 .agent-loop-notion {
 	max-width: 100% !important;
