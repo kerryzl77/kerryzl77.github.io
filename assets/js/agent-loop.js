@@ -1,6 +1,6 @@
 // Agent Loop page helpers:
-// - Render Mermaid diagrams from Notion-exported code blocks.
 // - Ensure Prism autoloads missing language grammars (Python/Bash) and highlights.
+// - Add copy-to-clipboard buttons to code blocks.
 //
 // NOTE: This is an external file on purpose — inline scripts get mangled by the site's
 // HTML compressor (`_layouts/compress.html`) which can introduce syntax errors.
@@ -48,57 +48,6 @@
         pre.classList.add("language-" + lang);
       }
     });
-  }
-
-  function convertMermaidBlocks(root) {
-    var blocks = root.querySelectorAll(
-      "pre > code.language-mermaid, pre > code.language-Mermaid, code.language-mermaid, code.language-Mermaid"
-    );
-
-    blocks.forEach(function (codeEl) {
-      var lang = getLanguageFromCodeEl(codeEl);
-      if (lang !== "mermaid") return;
-
-      var pre = codeEl.closest && codeEl.closest("pre");
-      var src = (codeEl.textContent || "").trimEnd();
-      if (!src.trim()) return;
-
-      // Avoid double-conversion if this runs multiple times.
-      if (pre && pre.dataset && pre.dataset.mermaidConverted === "true") return;
-
-      var container = document.createElement("div");
-      container.className = "mermaid";
-      container.textContent = src;
-      if (pre && pre.id) container.id = pre.id;
-
-      if (pre && pre.parentNode) {
-        if (pre.dataset) pre.dataset.mermaidConverted = "true";
-        pre.replaceWith(container);
-      } else if (codeEl && codeEl.parentNode) {
-        codeEl.replaceWith(container);
-      }
-    });
-  }
-
-  function renderMermaid() {
-    if (typeof window.mermaid === "undefined") return;
-    try {
-      window.mermaid.initialize({
-        startOnLoad: false,
-        theme: "neutral",
-        securityLevel: "loose",
-      });
-
-      if (typeof window.mermaid.run === "function") {
-        window.mermaid.run({ querySelector: ".agent-loop-notion .mermaid" });
-      } else if (typeof window.mermaid.init === "function") {
-        window.mermaid.init(undefined, document.querySelectorAll(".agent-loop-notion .mermaid"));
-      }
-    } catch (e) {
-      // Fail soft: keep the source text visible if rendering fails.
-      // eslint-disable-next-line no-console
-      console.warn("Mermaid render failed:", e);
-    }
   }
 
   function highlightPrism(root) {
@@ -197,10 +146,6 @@
   function run() {
     var root = document.querySelector(".agent-loop-notion");
     if (!root) return;
-
-    // Prefer converting Mermaid to diagrams (so Prism doesn't tokenize it first).
-    convertMermaidBlocks(root);
-    renderMermaid();
 
     // Then ensure Prism highlights remaining code blocks.
     normalizePrismClasses(root);
