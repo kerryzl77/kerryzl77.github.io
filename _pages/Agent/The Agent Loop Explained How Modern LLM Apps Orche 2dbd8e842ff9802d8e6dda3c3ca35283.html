@@ -41,7 +41,8 @@ author_profile: false
 #main > .archive {
 	float: none !important;
 	width: 100% !important;
-	max-width: none !important;
+	/* Karpathy-style: keep a readable column width while still feeling "wide". */
+	max-width: clamp(740px, 80vw, 900px) !important;
 	margin-left: auto !important;
 	margin-right: auto !important;
 }
@@ -58,7 +59,7 @@ author_profile: false
    Notion adds large side padding which makes the page feel too narrow. */
 .agent-loop-notion article.page {
 	width: 100% !important;
-	max-width: none !important;
+	max-width: clamp(740px, 80vw, 900px) !important;
 	margin-left: auto !important;
 	margin-right: auto !important;
 	padding-left: 0 !important;
