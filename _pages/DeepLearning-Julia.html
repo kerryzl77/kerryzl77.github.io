@@ -60,6 +60,13 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+
+/* -------------------------------------------------------------------------- */
+/* Fix sticky footer bug on this page                                          */
+/* Quarto's bundled Bootstrap sets `html { height: 100%; }`, which breaks the  */
+/* site's sticky footer positioning (footer appears mid-page while scrolling). */
+/* -------------------------------------------------------------------------- */
+html { height: auto !important; }
 </style>
 
 
