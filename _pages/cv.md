@@ -11,71 +11,62 @@ toc: false
 
 {% include base_path %}
 
-Education
-======
-* **University of California, Berkeley**, Berkeley, U.S.  
-  Master of Engineering in Industrial Engineering & Operational Research (Expected May 2025)  
-  * Award: Fung Excellence Scholarship
-  * Teaching: TA for [Info 159/259 (Natural Language Processing)](https://www.ischool.berkeley.edu/courses/info/259)
-  * Capstone: Deep Learning Time Series Forecasting (Transformers / DeepAR)  
-  * Relevant Modules: Optimization, Stochastic Processes, Revenue Management, Back-End Web Architecture, Parallel Computing (CUDA), Computer Vision (PhD), Entrepreneurship (Haas MBA)
+**Zikai (Kerry) Liu**  
+Berkeley, United States · (650) 613-8398 · [liuzikai0216@gmail.com](mailto:liuzikai0216@gmail.com) · [LinkedIn](https://www.linkedin.com/in/zikailiu/) · [GitHub](https://github.com/kerryzl77)
 
-* **University of St Andrews**, St Andrews, UK  
-  Master of Arts (Honours) in Mathematics (Sep 2020 – Jun 2024)  
-  * Activities: Tennis (Ex-Squad), Wine Tasting Team Co-Founder, Band Flutist  
-  * Relevant Modules: Machine Learning, Bayesian Statistics, Algorithms, Computation Theory, Partial Differential Equations  
+Now
+======
+I build **production AI agent + ML systems** at the research ↔ deployment boundary: multi-agent tool-use (Text-to-SQL), multimodal RAG, and training/fine-tuning pipelines.  
+
+
+Core focus
+======
+- **Agentic systems:** ReAct-style tool orchestration, evals, safety rails, reliability loops
+- **Data → context:** connectors + ingestion → indexing/semantic views → retrieval quality + traceability
+- **Multimodal RAG:** layout-aware PDF parsing, table extraction, image–text fusion
+- **Shipping:** multi-tenant ops, rate limits, TTL/cleanup, observability
 
 Work Experience
 ======
-* **VIP.com**, Guangzhou, China  
-  Data Science Intern, E-commerce Product Technology R&D (Jun 2024 – Aug 2024)  
-  * Developed PySpark workflows to compare delivery metrics, reducing shipment time by 27%.
-  * Integrated DeepSeek V2 few-shot classifier RAG models to automate return responsibility analysis, achieving 98% accuracy.
+**Articul8 AI (San Francisco, US)** — AI/ML Engineer (Jun 2025 – Present)  
+*Forward-deployed AI for **Global 2000** customers — agents (Text-to-SQL) · connectors/ingestion · multimodal RAG · production ops.*  
+- **2** discovery → production deployments; **multi-agent analytics** workflow reused across **5+** customer engagements.
+- Secure multi-tenant ingestion (GDrive/SharePoint + Snowflake → S3 Parquet) + Ray multimodal pipelines at ~**20 PDFs/min** via layout-aware parsing + table extraction.
 
-* **Amazon**, London, UK  
-  Business Analyst Intern, EU Customer Order Forecasting (May 2023 – Sep 2023)  
-  * Deployed distributed Gradient Boosting models on AWS for demand forecasting with a 5.2% MAPE.
-  * Automated Power BI dashboards, optimizing report generation and improving demand forecasting accuracy.
+**VIP.com (Guangzhou, China)** — Data Science Intern (Jun 2024 – Aug 2024)  
+*E-commerce ML at scale — return classification · multimodal signals · PySpark optimization.*  
+- Customer return agent RAG in **LangChain**: multimodal classifier (text + images + courier notes), **98% precision**.
+- Delivery routing optimization in **PySpark** on ~**5M** orders; shipment time reduced **27%** for Northeast China lanes.
 
-* **Dark Matter AI (DMAI)**, Los Angeles, US (Remote)  
-  Data Engineer Intern (Jul 2022 – Aug 2022)  
-  * Improved data quality in labeling projects, reducing manual error rates by 20%.
-  * Managed 10GB+ data processing pipelines, supporting machine learning model training.
+**Amazon (London, UK)** — Business Analyst Intern (May 2023 – Sep 2023)  
+*Ops ML that changes decisions — SageMaker forecasting · analytics pipelines for planning.*  
+- Distributed ML on **SageMaker** + **Redshift** for fulfillment-centre order volume drops (~**5% MAPE**).
+- Cross-team backlog/flow-speed analytics (MySQL on EC2): global product velocity query for **100+** stakeholders.
 
-* **SCOR Ventures**, London, UK (Hybrid)  
-  Intern, Corporate Ventures Capital (Oct 2021 – Jun 2022)  
-  * Automated VBA valuation templates, enhancing efficiency by 70%.
-  * Developed data-driven SaaS analysis in Tableau, supporting investment reviews.
+**SCOR Ventures (London, UK)** — Corporate Ventures Capital Intern (Oct 2021 – Jun 2022)  
+*Seed–Series E diligence — fintech/SaaS · PitchBook/CapIQ · VBA models · Tableau narratives.*  
+- **2** VBA valuation + benchmarking templates (10k+ datapoints), supporting investment memos and quarterly portfolio reviews.
 
-Research Experience
+Selected Projects
 ======
-* **School of Mathematics and Statistics, University of St Andrews**  
-  Research Assistant (Sep 2023 – Feb 2024)  
-  * Project: Spatio-Temporal Pollution Impact on Health Prediction  
-  * Designed a 2-stage Gaussian Process model for pollution trend analysis, assessing health impacts using CARBayes in R.
+- [Sequential Monte Carlo Methods in Spatio-Temporal Modeling](https://github.com/kerryzl77/SMC-SSM/blob/main/Sequential_Monte_Carlo_Methods.pdf)
+- [Classification of Product Manager Types in the Job Market](https://github.com/kerryzl77/BERT-PM-Classification/blob/main/Classification%20of%20Product%20Manager%20Types%20to%20Understand%20the%20Job%20Market.pdf)
 
-Skills and Languages
+Education
 ======
-* **Technical Skills**: Python (PyTorch, TensorFlow, Scikit-learn, Streamlit, Flask), AWS (SageMaker, EC2), R (dplyr, tseries), Java, C++, Databricks, A/B Testing, SQL, Git, Spark, Excel (VBA), Power BI  
-* **Languages**: Mandarin (Native), English (Fluent), Cantonese (Fluent), German (Intermediate)  
+**University of California, Berkeley** — M.Eng. Industrial Engineering & Operations Research (Aug 2024 – May 2025)  
+*GPA 3.9/4.0 · Fung Excellence Scholarship · GSI/TA: NLP (Info 159/259) · AI Affinity Group*  
+Key focus: ML systems, LLM agents, computer vision, parallel computing, backend systems.
 
-Publications
-======
-* [Sequential Monte Carlo Methods in Spatio-Temporal Modeling](https://github.com/kerryzl77/SMC-SSM/blob/main/Sequential_Monte_Carlo_Methods.pdf)  
-* [Classification of Product Manager Types in the Job Market](https://github.com/kerryzl77/BERT-PM-Classification/blob/main/Classification%20of%20Product%20Manager%20Types%20to%20Understand%20the%20Job%20Market.pdf)  
+**University of St Andrews** — M.A. (Hons) Mathematics (Sep 2020 – Jun 2024)  
+*GPA 3.8/4.0 · Tennis Club (ex-squad)*  
+Key focus: ML, Bayesian stats, stochastic processes, PDE.
 
-<!-- Talks
+Technical Skills
 ======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul> -->
-
-Service and Leadership
-======
-* AI Affinity Group, Hass Entrepreneurship Club members 
+- **Languages:** Python, SQL, TypeScript/Node.js
+- **ML/Agents:** PyTorch, HuggingFace, Ray, OpenCV, MCP, Temporal, GEPA
+- **Data:** Spark, Milvus, Neo4j
+- **Infra/Cloud:** Docker, Kubernetes, Flyte, W&B, AWS, GCP
+- **Engineering:** FastAPI, CI/CD (Git)
+- **Languages (human):** Mandarin (Native), English (Fluent), Cantonese (Fluent), German (Intermediate)
