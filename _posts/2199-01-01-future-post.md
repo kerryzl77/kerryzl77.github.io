@@ -1,7 +1,7 @@
 ---
 title: 'Future Blog Post'
 date: 2025-03-01
-permalink: /posts/2012/08/blog-post-4/
+permalink: /posts/2199/01/future-post/
 published: false 
 hidden: true
 tags:

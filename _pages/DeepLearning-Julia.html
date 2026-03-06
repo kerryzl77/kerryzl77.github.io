@@ -2,6 +2,7 @@
 layout: archive
 permalink: /deeplearning-julia/
 title: "Deep Learning with Julia"
+author_profile: false
 ---
 
 <!DOCTYPE html>
@@ -13,7 +14,7 @@ title: "Deep Learning with Julia"
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction</title>
+<title>Deep Learning with Julia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -55,8 +56,6 @@ pre.numberSource code > span > a:first-child::before
     padding: 0 4px; width: 4em;
   }
 pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
@@ -67,6 +66,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 /* site's sticky footer positioning (footer appears mid-page while scrolling). */
 /* -------------------------------------------------------------------------- */
 html { height: auto !important; }
+
+/* -------------------------------------------------------------------------- */
+/* Match the standalone reading layout used on the agent article               */
+/* -------------------------------------------------------------------------- */
+#main > .archive {
+  float: none !important;
+  width: 100% !important;
+  max-width: clamp(740px, 80vw, 900px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#main > .archive > .page__title {
+  display: none !important;
+}
+
+#main > .archive > .page__content {
+  float: none !important;
+  width: 100% !important;
+}
+
+#quarto-content,
+#quarto-document-content {
+  width: 100% !important;
+  max-width: clamp(740px, 80vw, 900px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+#quarto-content {
+  display: block !important;
+}
+
+#quarto-document-content {
+  color: rgb(55, 53, 47);
+  font-size: 1.1rem;
+  line-height: 1.75;
+}
+
+#title-block-header {
+  margin-top: 0 !important;
+  margin-bottom: 2rem !important;
+  padding-top: 0 !important;
+}
+
+#title-block-header .quarto-title h1.title {
+  font-size: clamp(2.75rem, 5.8vw, 4.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+#quarto-document-content h2,
+#quarto-document-content h3,
+#quarto-document-content h4 {
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+#quarto-document-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+}
+
+div.sourceCode {
+  margin: 1.5rem 0;
+}
+
+pre.sourceCode {
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  #quarto-document-content {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  #title-block-header .quarto-title h1.title {
+    font-size: clamp(2.25rem, 11vw, 3.25rem);
+  }
+}
 </style>
 
 
@@ -92,7 +179,7 @@ html { height: auto !important; }
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction</h1>
+<h1 class="title">Deep Learning with Julia</h1>
 </div>
 
 
@@ -108,7 +195,8 @@ html { height: auto !important; }
 
 </header>
 
-
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Deep learning is a specialized subset of machine learning that uses multi-layered neural networks (often called deep neural networks) to learn complex patterns from data​. In this tutorial, we’ll introduce <strong>Flux.jl</strong>, a pure-Julia library for machine learning models (including deep neural networks)​, and walk through building, training, and evaluating a neural network on the classic MNIST dataset of handwritten digits.</p>
 <p><strong>This tutorial covers</strong>:</p>
 <ol type="1">
