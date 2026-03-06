@@ -320,6 +320,25 @@
   }
 }
 
+@media (min-width: 800px) {
+  .greedy-nav {
+    button {
+      display: none !important;
+    }
+
+    .visible-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.15rem;
+    }
+
+    .hidden-links {
+      display: none !important;
+    }
+  }
+}
+
 
 /*
    Navigation list

@@ -1,3 +1,42 @@
 <script type="module" src="{{ base_path }}/assets/js/main.min.js"></script>
+<script>
+  (function() {
+    const desktopNavMinWidth = 800;
+
+    function restoreDesktopNav() {
+      if (window.innerWidth < desktopNavMinWidth) return;
+
+      const nav = document.getElementById("site-nav");
+      if (!nav) return;
+
+      const visibleLinks = nav.querySelector(".visible-links");
+      const hiddenLinks = nav.querySelector(".hidden-links");
+      const menuButton = nav.querySelector("button");
+      const tail = visibleLinks && visibleLinks.querySelector(".persist.tail");
+
+      if (!visibleLinks || !hiddenLinks) return;
+
+      while (hiddenLinks.firstElementChild) {
+        if (tail) {
+          visibleLinks.insertBefore(hiddenLinks.firstElementChild, tail);
+        } else {
+          visibleLinks.appendChild(hiddenLinks.firstElementChild);
+        }
+      }
+
+      if (menuButton) {
+        menuButton.classList.add("hidden");
+        menuButton.classList.remove("close");
+      }
+      hiddenLinks.classList.add("hidden");
+    }
+
+    window.addEventListener("load", restoreDesktopNav);
+    window.addEventListener("resize", restoreDesktopNav);
+    if (screen.orientation && screen.orientation.addEventListener) {
+      screen.orientation.addEventListener("change", restoreDesktopNav);
+    }
+  })();
+</script>
 
 {% include analytics.html %}
