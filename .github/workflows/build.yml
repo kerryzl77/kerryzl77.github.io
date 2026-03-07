@@ -1,0 +1,26 @@
+name: Build Site
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  jekyll-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.1"
+          bundler-cache: true
+
+      - name: Build Jekyll site
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build
