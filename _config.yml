@@ -8,10 +8,10 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Home"
+title                    : "Zikai Liu"
 title_separator          : "-"
 name                     : &name "Zikai Liu"
-description              : &description "personal description"
+description              : &description "Personal website of Zikai (Kerry) Liu — AI/ML engineer writing about data science, generative AI, and ML systems."
 url                      : https://kerryzl77.github.io  # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "kerryzl77/kerryzl77.github.io"

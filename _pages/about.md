@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-Welcome to my personal site! I’m Zikai (Kerry) Liu, a Master of Engineering student in Industrial Engineering and Operational Research at UC Berkeley, with a Mathematics undergraduate degree from the University of St Andrews. My professional interests lie at the intersection of data science and Generative AI, particularly in applying Natural Language Processing (NLP) and Retrieval-Augmented Language Models (RAG) for business insights and decision-making.
+Welcome to my personal site! I’m Zikai (Kerry) Liu, an AI/ML Engineer at Articul8 AI. I hold a Master of Engineering in Industrial Engineering and Operations Research from UC Berkeley and a Mathematics undergraduate degree from the University of St Andrews. My professional interests lie at the intersection of data science and Generative AI, particularly in applying Natural Language Processing (NLP) and Retrieval-Augmented Language Models (RAG) for business insights and decision-making.
 
 ### Professional Background
 I’ve gained valuable experience through internships in both the tech and corporate sectors, including data science roles at Amazon and VIP.com. My projects have focused on customer demand forecasting, logistics optimization, and model development to enhance supply chain efficiency. I’ve also explored various analytical tools and methodologies, from PyTorch for deep learning models to Python and SQL for data processing and automation.
