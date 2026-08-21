@@ -15,6 +15,36 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="stylesheet" href="{{ base_path }}/assets/css/academicons.css"/>
 
+<style>
+  .page__content img {
+    max-width: 100%;
+    height: auto;
+  }
+  .video-embed {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    margin: 1.25rem 0 1.75rem;
+  }
+  .video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .archive__item-excerpt p {
+    margin-bottom: 0.4rem;
+  }
+  .archive__item-excerpt p:last-child {
+    margin-bottom: 0;
+  }
+</style>
+
 
 <!-- MathJax is loaded via `_includes/footer/custom.html`.
      Avoid loading a second copy here (it can throw runtime errors and break other scripts). -->
