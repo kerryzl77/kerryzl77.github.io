@@ -8,6 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
+site_theme               : "default" # academicpages options: default, air, sunrise, mint, dirt, contrast
 title                    : "Zikai Liu"
 title_separator          : "-"
 name                     : &name "Zikai Liu"
@@ -135,7 +136,8 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 :  # Open Graph/Twitter default site image
+og_image                 : "profile.png"
+og_description           : "Personal website of Zikai (Kerry) Liu — AI/ML engineer writing about data science, generative AI, and ML systems."
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
@@ -302,6 +304,7 @@ plugins:
   - jekyll-gist
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-redirect-from
   - jemoji
 
 # Mimic GitHub Pages with --safe
@@ -310,6 +313,7 @@ whitelist:
   - jekyll-gist
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-redirect-from
   - jemoji
 
 
