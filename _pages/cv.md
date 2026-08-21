@@ -14,20 +14,17 @@ toc: false
 **Zikai (Kerry) Liu**  
 Berkeley, United States · (650) 613-8398 · [liuzikai0216@gmail.com](mailto:liuzikai0216@gmail.com) · [LinkedIn](https://www.linkedin.com/in/zikailiu/) · [GitHub](https://github.com/kerryzl77)
 
-Now
-======
+## Now
 I build **production AI agent + ML systems** at the research ↔ deployment boundary: multi-agent tool-use (Text-to-SQL), multimodal RAG, and training/fine-tuning pipelines.  
 
 
-Core focus
-======
+## Core focus
 - **Agentic systems:** ReAct-style tool orchestration, evals, safety rails, reliability loops
 - **Data → context:** connectors + ingestion → indexing/semantic views → retrieval quality + traceability
 - **Multimodal RAG:** layout-aware PDF parsing, table extraction, image–text fusion
 - **Shipping:** multi-tenant ops, rate limits, TTL/cleanup, observability
 
-Work Experience
-======
+## Work Experience
 **Articul8 AI (San Francisco, US)** — AI/ML Engineer (Jun 2025 – Present)  
 *Forward-deployed AI for **Global 2000** customers — agents (Text-to-SQL) · connectors/ingestion · multimodal RAG · production ops.*  
 - **2** discovery → production deployments; **multi-agent analytics** workflow reused across **5+** customer engagements.
@@ -47,13 +44,11 @@ Work Experience
 *Seed–Series E diligence — fintech/SaaS · PitchBook/CapIQ · VBA models · Tableau narratives.*  
 - **2** VBA valuation + benchmarking templates (10k+ datapoints), supporting investment memos and quarterly portfolio reviews.
 
-Selected Projects
-======
+## Selected Projects
 - [Sequential Monte Carlo Methods in Spatio-Temporal Modeling](https://github.com/kerryzl77/SMC-SSM/blob/main/Sequential_Monte_Carlo_Methods.pdf)
 - [Classification of Product Manager Types in the Job Market](https://github.com/kerryzl77/BERT-PM-Classification/blob/main/Classification%20of%20Product%20Manager%20Types%20to%20Understand%20the%20Job%20Market.pdf)
 
-Education
-======
+## Education
 **University of California, Berkeley** — M.Eng. Industrial Engineering & Operations Research (Aug 2024 – May 2025)  
 *GPA 3.9/4.0 · Fung Excellence Scholarship · GSI/TA: NLP (Info 159/259) · AI Affinity Group*  
 Key focus: ML systems, LLM agents, computer vision, parallel computing, backend systems.
@@ -62,8 +57,7 @@ Key focus: ML systems, LLM agents, computer vision, parallel computing, backend 
 *GPA 3.8/4.0 · Tennis Club (ex-squad)*  
 Key focus: ML, Bayesian stats, stochastic processes, PDE.
 
-Technical Skills
-======
+## Technical Skills
 - **Languages:** Python, SQL, TypeScript/Node.js
 - **ML/Agents:** PyTorch, HuggingFace, Ray, OpenCV, MCP, Temporal, GEPA
 - **Data:** Spark, Milvus, Neo4j
