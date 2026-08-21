@@ -1,0 +1,11 @@
+{
+  "name": "Academic Pages",
+  "install": "bash .cursor/install.sh",
+  "terminals": [
+    {
+      "name": "jekyll",
+      "command": "bundle exec jekyll serve -H 0.0.0.0 -P 4000 --livereload"
+    }
+  ],
+  "ports": [4000]
+}
