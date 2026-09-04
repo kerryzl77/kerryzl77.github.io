@@ -12,55 +12,48 @@ toc: false
 {% include base_path %}
 
 **Zikai (Kerry) Liu**  
-Berkeley, United States · (650) 613-8398 · [liuzikai0216@gmail.com](mailto:liuzikai0216@gmail.com) · [LinkedIn](https://www.linkedin.com/in/zikailiu/) · [GitHub](https://github.com/kerryzl77)
+San Francisco, California · (650) 613-8398 · [liuzikai0216@gmail.com](mailto:liuzikai0216@gmail.com) · [Website](https://kerryzl77.github.io) · [LinkedIn](https://www.linkedin.com/in/ZikaiLiu) · [GitHub](https://github.com/kerryzl77)
 
-## Now
-I build **production AI agent + ML systems** at the research ↔ deployment boundary: multi-agent tool-use (Text-to-SQL), multimodal RAG, and training/fine-tuning pipelines.  
+## Focus
 
+I build production AI agents and the infrastructure that makes them reliable: tool execution, retrieval, sandboxed computation, structured outputs, citations, tracing, evaluation, and cost/latency controls.
 
-## Core focus
-- **Agentic systems:** ReAct-style tool orchestration, evals, safety rails, reliability loops
-- **Data → context:** connectors + ingestion → indexing/semantic views → retrieval quality + traceability
-- **Multimodal RAG:** layout-aware PDF parsing, table extraction, image–text fusion
-- **Shipping:** multi-tenant ops, rate limits, TTL/cleanup, observability
+## Work experience
 
-## Work Experience
-**Articul8 AI (San Francisco, US)** — AI/ML Engineer (Jun 2025 – Present)  
-*Forward-deployed AI for **Global 2000** customers — agents (Text-to-SQL) · connectors/ingestion · multimodal RAG · production ops.*  
-- **2** discovery → production deployments; **multi-agent analytics** workflow reused across **5+** customer engagements.
-- Secure multi-tenant ingestion (GDrive/SharePoint + Snowflake → S3 Parquet) + Ray multimodal pipelines at ~**20 PDFs/min** via layout-aware parsing + table extraction.
+**FurtherAI (a16z, YC), San Francisco** - AI Engineer (Feb 2026 - Present)
 
-**VIP.com (Guangzhou, China)** — Data Science Intern (Jun 2024 – Aug 2024)  
-*E-commerce ML at scale — return classification · multimodal signals · PySpark optimization.*  
-- Customer return agent RAG in **LangChain**: multimodal classifier (text + images + courier notes), **98% precision**.
-- Delivery routing optimization in **PySpark** on ~**5M** orders; shipment time reduced **27%** for Northeast China lanes.
+- First agent-team hire; led the 0-to-1 development of a full-stack extraction agent across a TypeScript/React UI, Python runtime, tool use, and structured-output validation; adopted in roughly 95% of customer workflows and powering tens of thousands of monthly runs.
+- Architected complexity-aware routing across one-shot, retrieval, and sandboxed file-system agents for PDFs, email, and spreadsheets, reducing inference cost 75-80% versus specialist vendors at comparable accuracy.
+- Built sentence- and cell-level citations for multimodal outputs, with schema constraints and validation across UI, save-time, and runtime layers.
+- Created a rigorous evaluation suite and led a 10-person FDE effort spanning document, schema, and semantic complexity; converted controlled trials into CI regression gates and live model/runtime routing.
+- Co-developed a persistent sandbox SDK and tracing across two agent runtimes, enabling pause/resume sessions, headless extraction, multi-provider retries/timeouts, and versioned traces for more than one million monthly tool calls.
 
-**Amazon (London, UK)** — Business Analyst Intern (May 2023 – Sep 2023)  
-*Ops ML that changes decisions — SageMaker forecasting · analytics pipelines for planning.*  
-- Distributed ML on **SageMaker** + **Redshift** for fulfillment-centre order volume drops (~**5% MAPE**).
-- Cross-team backlog/flow-speed analytics (MySQL on EC2): global product velocity query for **100+** stakeholders.
+**Articul8 AI (Intel spinout), Santa Clara** - AI/ML Engineer (Jun 2025 - Feb 2026)
 
-**SCOR Ventures (London, UK)** — Corporate Ventures Capital Intern (Oct 2021 – Jun 2022)  
-*Seed–Series E diligence — fintech/SaaS · PitchBook/CapIQ · VBA models · Tableau narratives.*  
-- **2** VBA valuation + benchmarking templates (10k+ datapoints), supporting investment memos and quarterly portfolio reviews.
+- First AI/ML engineering hire; built a reusable ReAct Text-to-SQL service that converted user intent into an intermediate representation and generated traceable SQL and query-linked charts, reused across 5-7 customer demonstrations and advancing the initial account toward a proof of concept.
+- Benchmarked DuckDB and ClickHouse, connected SQL, MongoDB, Google Drive, Salesforce, and Parquet data, and partnered with infrastructure engineers to deploy the analytics microservice on Kubernetes.
+- Led multimodal document understanding and co-developed a Ray ingestion pipeline processing roughly 20 PDFs per minute with multi-tenant connectors across Google Drive, SharePoint, Snowflake, and S3/Parquet.
 
-## Selected Projects
-- [Sequential Monte Carlo Methods in Spatio-Temporal Modeling](https://github.com/kerryzl77/SMC-SSM/blob/main/Sequential_Monte_Carlo_Methods.pdf)
-- [Classification of Product Manager Types in the Job Market](https://github.com/kerryzl77/BERT-PM-Classification/blob/main/Classification%20of%20Product%20Manager%20Types%20to%20Understand%20the%20Job%20Market.pdf)
+**Amazon, London** - Business Analyst Intern (May 2023 - Sep 2023)
+
+- Engineered a distributed LightGBM model on SageMaker predicting fulfillment-center shutdown volume drops (roughly 5% MAPE, +340 bps T3W test), directly informing staffing and shipment planning.
+
+## Selected work
+
+- [Agent Orchestration Is a Routing Problem, Not a Prompting Trick](/multi-agent-routing/) - worker topologies, mailboxes, dynamic workflows, leased computer sessions, and evidence-bearing joins.
+- [The Agent Loop Explained: How Modern LLM Apps Orchestrate Tools](/agent-loop/) - tools, state, MCP, routing, delegation, tracing, and sandboxed coding agents, with runnable OpenAI and Claude SDK examples.
+- [DeepBrief](https://github.com/kerryzl77/deepbrief) - an automated pipeline for source discovery, grounded analysis, verification, PDF reports, and feedback-driven prompt experiments.
 
 ## Education
-**University of California, Berkeley** — M.Eng. Industrial Engineering & Operations Research (Aug 2024 – May 2025)  
-*GPA 3.9/4.0 · Fung Excellence Scholarship · GSI/TA: NLP (Info 159/259) · AI Affinity Group*  
-Key focus: ML systems, LLM agents, computer vision, parallel computing, backend systems.
 
-**University of St Andrews** — M.A. (Hons) Mathematics (Sep 2020 – Jun 2024)  
-*GPA 3.8/4.0 · Tennis Club (ex-squad)*  
-Key focus: ML, Bayesian stats, stochastic processes, PDE.
+**University of California, Berkeley** - MEng, Industrial Engineering & Operations Research (Aug 2024 - May 2025)
+GPA 3.9/4.0 · Fung Scholarship · Natural Language Processing (TA) · Computer Vision (PhD)
 
-## Technical Skills
-- **Languages:** Python, SQL, TypeScript/Node.js
-- **ML/Agents:** PyTorch, HuggingFace, Ray, OpenCV, MCP, Temporal, GEPA
-- **Data:** Spark, Milvus, Neo4j
-- **Infra/Cloud:** Docker, Kubernetes, Flyte, W&B, AWS, GCP
-- **Engineering:** FastAPI, CI/CD (Git)
-- **Languages (human):** Mandarin (Native), English (Fluent), Cantonese (Fluent), German (Intermediate)
+**University of St Andrews** - MA (Honours), Mathematics (Sep 2020 - Jun 2024)
+GPA 3.8/4.0 · Machine Learning · Bayesian Statistics · Stochastic Processes
+
+## Technical skills
+
+- **Languages and product:** Python, TypeScript/JavaScript, SQL, React, FastAPI
+- **Agents and AI:** OpenAI and Claude Agent SDKs, MCP, tool calling, RAG, structured outputs, evaluation, Braintrust, PyTorch, Hugging Face
+- **Systems:** Kubernetes, Docker, E2B, Ray, AWS, GCP, CI/CD, vector databases, DuckDB
