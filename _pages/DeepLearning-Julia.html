@@ -1,8 +1,12 @@
 ---
-layout: archive
+layout: essay
 permalink: /deeplearning-julia/
 title: "Deep Learning with Julia"
 author_profile: false
+writing: true
+date: 2025-03-03
+read_time: true
+reading_minutes: 28
 ---
 
 <style>
@@ -165,25 +169,9 @@ pre.sourceCode {
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Deep Learning with Julia</h1>
-</div>
+<div class="content" id="quarto-document-content">
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
@@ -720,8 +708,8 @@ end</code></pre>
 <span id="cb20-67"><a href="#cb20-67" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"Epoch </span><span class="sc">$</span>epoch<span class="st"> complete. Sample training loss = </span><span class="sc">$</span>train_loss<span class="st">"</span>)</span>
 <span id="cb20-68"><a href="#cb20-68" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div style="display: flex; justify-content: space-between;">
-<div style="flex: 1; margin-right: 20px;">
+<div class="training-comparison">
+<div>
 <p><strong>Proper loss with learning FP32 Copy</strong></p>
 <table class="caption-top table">
 <thead>
@@ -754,7 +742,7 @@ end</code></pre>
 </tbody>
 </table>
 </div>
-<div style="flex: 1; margin-left: 30px;">
+<div>
 <p><strong>Unstable loss with learning Everything in FP16</strong></p>
 <table class="caption-top table">
 <thead>
@@ -791,7 +779,7 @@ end</code></pre>
 <p>Things to consider</p>
 <ol type="1">
 <li><p><a href="https://computing.stat.berkeley.edu/tutorial-parallelization/parallel-python#6-using-the-gpu-via-pytorch">The GPU memory is separate from CPU memory</a>, and transferring data from the CPU to GPU (or back) is often more costly than doing the computation on the GPU.</p></li>
-<li><p>On the other hand, GPUs can process these lower-precision operations (FP16) faster—sometimes leveraging specialized hardware like <a href="https://datacrunch.io/blog/role-of-tensor-cores-in-parallel-computing-and-ai">Tensor Cores</a> (Processing unit in A100, H100 etc) —which results in a significant speed-up.</p></li>
+<li><p>On the other hand, GPUs can process these lower-precision operations (FP16) faster—sometimes leveraging specialized hardware like <a href="https://www.nvidia.com/en-us/data-center/tensor-cores/">Tensor Cores</a> (Processing unit in A100, H100 etc) —which results in a significant speed-up.</p></li>
 </ol>
 </section>
 <section id="memory-speed" class="level4">
@@ -1181,7 +1169,7 @@ end</code></pre>
 </section>
 </section>
 
-</main>
+</div>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

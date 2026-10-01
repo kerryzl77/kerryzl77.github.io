@@ -11,7 +11,7 @@ layout: compress
     {% include head/custom.html %}
   </head>
 
-  <body>
+  <body class="{{ page.classes }}{% if page.writing %} reading-page{% endif %}">
 
     {% include browser-upgrade.html %}
     {% include masthead.html %}
@@ -26,6 +26,13 @@ layout: compress
     </div>
 
     {% include scripts.html %}
+    <link rel="stylesheet" href="{{ '/assets/css/reading.css' | relative_url }}">
+    <script src="{{ '/assets/js/theme-keyboard.js' | relative_url }}" defer></script>
+    {% if page.writing %}<script src="{{ '/assets/js/reading.js' | relative_url }}" defer></script>{% endif %}
 
+    {% if page.places_map %}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+    <script src="{{ '/assets/js/places.js' | relative_url }}" defer></script>
+    {% endif %}
   </body>
 </html>

@@ -11,7 +11,7 @@ locale                   : "en-US"
 title                    : "Zikai Liu"
 title_separator          : "-"
 name                     : &name "Zikai Liu"
-description              : &description "Zikai (Kerry) Liu is an AI engineer building production agent systems, evaluation infrastructure, and reliable model-driven products."
+description              : &description "Zikai Liu is an applied AI engineer based in San Francisco, focused on agent harnesses, evals, and runtimes."
 url                      : https://kerryzl77.github.io  # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "kerryzl77/kerryzl77.github.io"
@@ -24,8 +24,8 @@ author:
   avatar           : "profile.png"
   name             : "Zikai Liu"
   pronouns         : # example: "she/her"  
-  bio              : "AI engineer building production agent systems"
-  location         : "San Francisco, CA"
+  bio              : "Applied AI engineer"
+  location         : "San Francisco"
   employer         : "FurtherAI"
   uri              : # "https://kerryzl77.github.io/about/"
   email            : "liuzikai0216@gmail.com"
@@ -233,8 +233,9 @@ defaults:
       path: ""
       type: posts
     values:
-      layout: single
-      author_profile: true
+      layout: essay
+      writing: true
+      author_profile: false
       read_time: true
       comments: true
       share: true

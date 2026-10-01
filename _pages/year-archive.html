@@ -2,20 +2,26 @@
 layout: archive
 permalink: /year-archive/
 title: "Blog"
-author_profile: true
+author_profile: false
+classes: writing-index
 redirect_from:
   - /wordpress/blog-posts/
 ---
-
-{% include base_path %}
-{% capture written_year %}'None'{% endcapture %}
-{% for post in site.posts %}
-  {% unless post.hidden %}
-    {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
-    {% if year != written_year %}
-      <h2 id="{{ year | slugify }}" class="archive__subtitle">{{ year }}</h2>
-      {% capture written_year %}{{ year }}{% endcapture %}
-    {% endif %}
-    {% include archive-single.html %}
-  {% endunless %}
-{% endfor %}
+<p class="blog-intro">Notes on AI agents, machine learning, and the systems behind them.</p>
+<div class="writing-list">
+{% for post in site.posts %}{% if post.url == '/multi-agent-routing/' %}
+<article><p class="essay-meta"><span class="writing-topic">Agent Systems</span><span class="writing-date">{{ post.modified | date: "%B %-d, %Y" }}</span></p><h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2><p>{{ post.excerpt | strip_html }}</p></article>
+{% endif %}{% endfor %}
+<article><p class="essay-meta"><span class="writing-topic">Agent Systems</span><span class="writing-date">January 2, 2026</span></p><h2><a href="{{ '/agent-loop/' | relative_url }}">The Agent Loop Explained: How Modern LLM Apps Orchestrate Tools</a></h2><p>A first-principles guide to tools, state, MCP, routing, delegation, tracing, and sandboxed coding agents.</p></article>
+<article><p class="essay-meta"><span class="writing-topic">Deep Learning</span><span class="writing-date">March 3, 2025</span></p><h2><a href="{{ '/deeplearning-julia/' | relative_url }}">Deep Learning with Julia</a></h2><p>Training neural networks with Flux, from MNIST basics to GPU acceleration and mixed precision.</p></article>
+{% for post in site.posts %}{% unless post.hidden or post.url == '/multi-agent-routing/' %}
+{% assign topic = 'Writing' %}
+{% assign summary = post.excerpt | strip_html %}
+{% case post.url %}
+{% when '/posts/2014/08/blog-post-3/' %}{% assign topic = 'Deep Learning' %}{% assign summary = 'Comparing iterative DeepAR and direct transformer forecasts, with training methods and experimental results.' %}
+{% when '/posts/2013/08/blog-post-2/' %}{% assign topic = 'Machine Learning' %}{% assign summary = 'Estimating demand and optimizing Airbnb prices with a multinomial logit choice model.' %}
+{% when '/posts/2012/08/blog-post-1/' %}{% assign topic = 'Product Design' %}{% assign summary = 'A location-sharing product demo made in Figma, with audio generated using the OpenAI API.' %}
+{% endcase %}
+<article><p class="essay-meta"><span class="writing-topic">{{ topic }}</span><span class="writing-date">{{ post.date | date: "%B %-d, %Y" }}</span></p><h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2><p>{{ summary }}</p></article>
+{% endunless %}{% endfor %}
+</div>

@@ -20,3 +20,10 @@
      Avoid loading a second copy here (it can throw runtime errors and break other scripts). -->
 
 <!-- end custom head snippets -->
+
+{% if page.places_map %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="{{ '/assets/css/places.css' | relative_url }}">
+{% endif %}
+
+<link rel="preload" as="style" href="{{ "/assets/css/reading.css" | relative_url }}">

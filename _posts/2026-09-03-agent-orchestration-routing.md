@@ -1,290 +1,171 @@
 ---
-title: "Agent Orchestration Is a Routing Problem, Not a Prompting Trick"
+layout: essay
+title: "Multi-agent systems: How models and harnesses evolve together"
 date: 2026-09-03
+modified: 2026-10-01
 permalink: /multi-agent-routing/
-author_profile: true
+author_profile: false
+writing: true
 read_time: true
+comments: false
+share: false
+excerpt: "How agents divide work, share context, and communicate—and how these designs change as models improve."
 tags:
   - AI agents
   - multi-agent systems
   - orchestration
-  - computer use
-  - MCP
 ---
 
-My previous article reduced an agent to four primitives: **model, tools, state, and a runtime that keeps the loop moving**. Multi-agent systems seem like the obvious next step: put several loops next to each other and let them collaborate.
+{% include essay-toc.html %}
 
-That description is directionally right and operationally incomplete. The moment two agents can touch the same repository, browser, task, or external record, the interesting problem is no longer how many agents you can spawn. It is **where work is routed, who owns mutable state, what survives failure, and what evidence is required before the system says “done.”**
+“Multi-agent” can mean very different things. A billing agent handing a customer over to a refund agent is one version [\[1\]](#ref-1). A group of agents working in parallel on a code change or a research question is another [\[2\]](#ref-2). And then there are teams with more persistent roles—a product manager, an engineer, a designer—each carrying its own context and responsibilities [\[3\]](#ref-3).
 
-I reached this view by comparing current agent-team runtimes, tracing a two-level code-execution stack, and running black-box isolation and concurrency probes against a multi-Bot desktop environment. The recurring pattern was surprisingly consistent:
+The model generates responses and proposes actions; the harness manages the process around it. This includes assembling context, executing tool calls, maintaining state, and evaluating results. Together, these mechanisms allow the model to work through a task across multiple interactions with its environment. [\[5\]](#ref-5)
 
-> **Parallelize independent lanes. Serialize shared state. Make every join carry evidence.**
+Will the model “eat the harness”? [\[4\]](#ref-4) I don’t have a settled answer. My take is that model capability and harness design evolve together. Increasingly, we can let the model decide how to divide work, whom to contact, and what context to share.
 
-![Evidence-bearing multi-agent orchestration](/assets/images/multi-agent-routing.svg)
+This post traces the evolution of multi-agent design through changes in model training, model behavior, and the systems built around them. It examines Claude Code and Codex alongside Grok Bot and Muse across coding, research, and tasks that require browser or computer interaction. Across these systems and use cases, the focus is on how agents divide work, share context, and communicate. The central question is how these designs reflect both the capabilities of their models and the assumptions of their developers—and how that balance changes as models improve.
 
-## TL;DR
+## How we got here: a brief history of multi-agent design
 
-- A subagent call, a conversation handoff, a durable teammate, and a remote computer worker are different topologies. Name the one you are building.
-- A transcript is an audit log, not a message bus. Live coordination needs addresses, mailboxes, task state, wake-up rules, and a separate interruption primitive.
-- Concurrency should be keyed by the **stateful resource** - a checkout, browser session, display, or account - rather than by the friendly name of an agent.
-- Models are good at semantic judgment. Code should own repeatable fan-out, joins, barriers, budgets, retries, and cleanup.
-- Adding agents does not define correctness. Explicit intermediate invariants and independent verification do.
-- Long-running agent work is a distributed-systems problem: durable admission, idempotency, heartbeats, event replay, cancellation, artifact persistence, and terminal states all matter.
+In late 2025, coding workflows commonly began with reviewing and agreeing on a plan before moving to implementation. The plan became a Markdown document that could carry the task into the next stage. Cursor supported planning with one model and building with another; Claude Code also offered an option to clear the conversation context while retaining the approved plan for implementation. [\[6\]](#ref-6) [\[7\]](#ref-7) The saved plan carried the agreed scope and decisions into implementation, even when the model or conversation context changed.
 
-## 1. “Multi-agent” hides several architectures
+Breaking a project into smaller tasks gave the agent a plan, but it still needed a working environment where it could execute that plan and keep track of its progress. In Anthropic’s long-running coding experiments, Sonnet 4.5 sometimes began wrapping up as it approached its perceived context limit—a behavior they called “context anxiety.” Compaction alone was insufficient, so the harness used fresh sessions with structured handoffs and progress files to carry the work forward. A task list guided the coding agent through one feature at a time. [\[8\]](#ref-8) Compaction reduces the conversation context needed to continue, while the workspace preserves the files and results the agent can return to. [\[23\]](#ref-23)
 
-People often use *multi-agent* for any system with more than one model loop. That hides the control boundary that matters most.
+This pattern extended beyond coding. Workflow builders such as n8n let users connect agents, tools, and control flow visually. [\[12\]](#ref-12) A concrete example is a financial-research workflow that combines planning, search, specialist analysis, report writing, and verification. [\[11\]](#ref-11) Deep research illustrates another arrangement: a lead agent can divide a question among subagents that investigate different aspects in parallel, then combine their findings into a report. [\[9\]](#ref-9) [\[10\]](#ref-10)
 
-### Subagent as a function call
+Why did these workflows take hold? In 2025, model releases highlighted coding performance on benchmarks such as SWE-bench Verified, where an agent receives an existing repository and a GitHub issue, and its changes are tested to see whether they resolve that issue. [\[13\]](#ref-13) [\[14\]](#ref-14) That is a concrete task to delegate, but resolving an issue does not establish that an agent can manage an entire project. Harnesses helped bridge that gap, giving developers a way to push models toward larger projects without requiring them to manage every part reliably on their own. Terminal-Bench 4.0 gives agents a terminal environment in which to complete tasks. [\[17\]](#ref-17) GDPval-AA provides shell access and web browsing for professional work—for example, producing a touring band’s stage-layout PDF with equipment placement and input/output lists. [\[18\]](#ref-18) The agent works from a specification, using tools and a workspace to produce the finished deliverable.
 
-The coordinator delegates a bounded task, receives one result, and stays in control. This is a good fit for code review, source gathering, or a specialist analysis whose internal transcript does not belong in the main context.
+Trajectories generated inside a harness can then become training material. [\[16\]](#ref-16) DeepSeek-V3.2 illustrates how learning from specialist demonstrations is followed by learning from the model’s own attempts. After pre-training, the team develops specialist teachers from a common base checkpoint, using reinforcement learning to improve their performance in mathematics, coding, search, and other domains. Those teachers generate demonstrations, including long reasoning traces, which train a shared student through supervised fine-tuning. This distillation brings the specialists’ capabilities into one model, though John Schulman emphasizes that the transfer depends on a broad range of realistic prompts. Matching a teacher on easily verified tasks can still leave gaps in handling coding requests with multiple objectives and back-and-forth with a user. [\[15\]](#ref-15) [\[19\]](#ref-19) [\[26\]](#ref-26) The student then undergoes reinforcement learning with Group Relative Policy Optimization (GRPO): it generates multiple attempts at the same task, receives rewards for their results, and uses each attempt’s reward relative to the group average to update its weights. The emphasis shifts from imitating demonstrations toward exploring solutions through online reinforcement learning with verifiable rewards (RLVR), where success is checked against verifiable outcomes such as passing tests or correct answers. [\[15\]](#ref-15)
 
-The important property is not that the worker has a different persona. It is that the worker has a **clean context and a narrow input/output contract**.
+Training models to explore solutions and learn from feedback changes what we can leave for them to decide. Rather than prescribe every step, the harness can provide an objective, tools, constraints, and feedback, while the model chooses and revises its approach. Loops and goals support this arrangement by keeping work moving toward an objective across attempts. [\[20\]](#ref-20) [\[21\]](#ref-21)
 
-### Handoff
+This idea culminates in Karpathy’s auto-research, where the objective is to improve a language model’s validation performance. The agent change the model architecture, hyper-parameters, and training code, and run experiments within the training budget. [\[22\]](#ref-22) RLVR trains models to explore solutions using verifiable feedback, while the harness evolves to provide the tools, runtime, and tests that support this way of working. The harness defines what success means and how to measure it; the model decides how to get there.
 
-Control moves to another agent. A support triage agent transferring a conversation to a billing agent is the canonical example. The destination now owns the next interaction; the first agent is no longer merely waiting on a helper return value.
+If one agent can keep working toward a goal, why do we still need multiple agents? In a coding project, tracing a failing test and checking an API contract can happen in parallel, while validating a code change depends on the implementation being ready. A recent paper found that multiple agents improved performance on financial research such as merger analysis, with separate agents examining regulatory news, company filings, and operational impact, but performed worse on Minecraft crafting tasks, where each action changes the materials available for the next. [\[24\]](#ref-24) [\[25\]](#ref-25) A project can contain both kinds of work. The plans and workflows described earlier encoded our judgment about how to divide it. As models become more capable, how much of that judgment should we leave to them?
 
-### Teammates with mailboxes
+## How agents coordinate
 
-Several independent sessions share a task system and can send each other messages. [Claude Code agent teams](https://code.claude.com/docs/en/agent-teams), for example, document a lead, teammates, a shared task list, and a mailbox. This is closer to a small organization than a function call: teammates can work, become idle, receive a follow-up, and coordinate without putting every intermediate token in the lead's context.
+As we discussed earlier, long-running agents need to delegate focused work without losing track of the larger objective. Delegation begins with deciding what another agent needs to know. In a fixed workflow, we specify what passes from one step to the next; with subagents, the main agent can make that choice. For example, when creating a subagent in Codex, the main agent passes its assignment through `message`. The `fork_turns` parameter controls how much of the parent’s conversation history the child inherits: all of it, the most recent turns, or none. [\[27\]](#ref-27) The subagent has its own conversational context, while a shared filesystem lets the agents exchange files and work on the same project. The main agent can wait for the result before continuing, or keep working while the subagent runs in the background. Claude Code supports foreground and background execution, depending on the session configuration; Codex separates spawning from waiting. [\[28\]](#ref-28) [\[29\]](#ref-29) This brings decisions we previously encoded in a harness into the agent’s own work: what to delegate, what context to pass, and when to wait.
 
-### External workers
+Once agents are working, they need a shared record of tasks, ownership, and progress. Claude Code provides `TaskCreate`, `TaskGet`, `TaskList`, and `TaskUpdate` for this purpose. [\[30\]](#ref-30) [\[31\]](#ref-31) Coordinating access to that record introduces familiar distributed-systems problems. Cursor encountered locking and ownership problems when agents claimed shared work, then moved toward planners that assigned tasks to workers. [\[32\]](#ref-32) Anthropic’s compiler experiment used Git-synchronized lock files to claim tasks, without a central orchestrator or separate messaging mechanism. Tests checked results, while files preserved progress across sessions. [\[33\]](#ref-33) These designs give agents a common way to see what needs doing and who is responsible.
 
-An agent may own a worktree, container, browser session, graphical display, or remote machine. At this layer, “agent” describes a logical identity. It does **not** tell you whether execution is in-process, in another process, in another sandbox, or on another host.
+As models and harnesses evolve together, how much coordination should we leave to the model? My take is that we can prescribe less of the job list in advance and let agents discuss findings, react to changes, and revise assignments as they work. In Claude Code, subagents can use `SendMessage`, while background results return through completion notifications; teammates can also message one another. [\[28\]](#ref-28) [\[31\]](#ref-31) Codex’s multi-agent V2 lets the main agent inspect a child’s state, send new instructions, interrupt its work, or start another turn. The distinction between `send_message` and `followup_task` matters: a message alone does not restart an idle agent, while a follow-up does. The parent can use `wait_agent` to wait for progress messages, automatic completion notifications, user steering, or a timeout. [\[34\]](#ref-34) The harness provides the tools, while the model decides whom to contact, when to intervene, and how to move the project forward.
 
-This distinction matters. A routing flag that says “remote” is not proof of remote isolation. The reliable test is an identity probe: hostname, kernel or boot identity, process and mount namespaces, file visibility, and the actual execution directory.
+**Codex collaboration tools**
 
-## 2. A transcript is not a message bus
+| Tool | What the main agent uses it for |
+| --- | --- |
+| `spawn_agent` | Start a child with an assignment and selected conversation history. |
+| `list_agents` | Discover agents and inspect their current state. |
+| `send_message` | Send information or direction; does not start a new turn for an idle agent. |
+| `followup_task` | Send further work; starts a new turn if the agent is idle. |
+| `interrupt_agent` | Stop the current turn while keeping the agent available for later work. |
+| `wait_agent` | Wait for mailbox activity, user steering, or a timeout. |
 
-One of the most useful distinctions in the Codex collaboration model is between persisted history and live coordination.
+[\[34\]](#ref-34)
 
-The audit trail answers: *what happened?* A mailbox answers: *which live worker should receive this next?* Those are different systems.
+The agent can also write the workflow itself. In Claude Code’s dynamic workflows, Claude writes JavaScript that coordinates subagents; the script holds the branches, loops, and intermediate results. Several research tasks can run in parallel, their results can feed into a review stage, and the script can repeat a step when a check fails. [\[35\]](#ref-35) Codex’s code mode likewise lets the model compose eligible tool calls in a program, with nested calls dispatched through the harness’s tool runtime. [\[36\]](#ref-36)
 
-A useful collaboration runtime needs at least:
+An outer `functions.exec` program can invoke `node_repl.js`, where the agent runs JavaScript against browser and desktop SDKs. Within that persistent Node runtime, it can open several tabs, search them in parallel, collect results, and execute dependent actions in sequence. Variables and application handles remain available between calls, while selected text and screenshots return to the model for further decisions. This connects workflow construction with application control: the agent writes both the orchestration and the browser operations within it. OpenAI’s computer-use documentation also describes grouping application actions into code with loops and conditional logic. [\[37\]](#ref-37)
 
-1. **Addressing** - stable worker IDs or paths.
-2. **Delivery** - queued messages with clear recipient semantics.
-3. **Scheduling** - whether a message only arrives, wakes an idle worker, or creates a new turn.
-4. **Lifecycle** - running, waiting, idle, completed, failed, or interrupted.
-5. **Preemption** - a distinct operation for stopping in-flight work.
-6. **Persistence** - independent histories for recovery and audit.
+<figure class="original-figure">
+<a href="{{ "/assets/images/multi-agent/computer-control-original.png" | relative_url }}" target="_blank" rel="noopener"><img src="{{ "/assets/images/multi-agent/computer-control-original.png" | relative_url }}" alt="How Codex controls the computer"></a>
+</figure>
 
-This is why “send a message” and “interrupt the agent” should never be synonyms. A normal message can become visible at a safe turn boundary without being spliced into the middle of a generated sentence or cancelling a running tool. If the product needs preemption, the control plane should say so explicitly.
+## What’s next? A higher level abstraction
 
-OpenAI's Codex materials similarly separate asynchronous delegation, parallel work, isolated worktrees, and review in the surrounding harness rather than treating them as prompt conventions ([Codex app](https://openai.com/index/introducing-the-codex-app/), [Codex introduction](https://openai.com/index/introducing-codex/)).
+As agents take on longer tasks that might take humans hours to complete, leaving the MacBook lid open starts to feel undesirable. [\[38\]](#ref-38) Everyone wants to move their work to the cloud. ChatGPT Work, for example, runs the Codex harness in a VM-backed cloud sandbox. But running the harness there doesn’t bring your computer with it: local files, browser sessions, and network connections do not automatically follow. [\[39\]](#ref-39) More questions arise as the work runs: what survives after compaction? What happens when the execution environment fails or another agent takes over unfinished work? What needs to survive so the task can resume?
 
-## 3. The concurrency key is the resource
+Anthropic’s Managed Agents design separates the session, harness, and execution environment. Conversation history lives in a durable session log, independently of the loop calling the model and the sandbox executing its tools. After a restart, that loop can recover the recorded history and continue. A failed sandbox can be replaced without erasing the session, although restoring its working files is a separate concern. Compaction reduces the history included in a model call without deleting the underlying log. This allows context management and orchestration to change as models improve, while preserving the session history and managing execution resources separately. [\[40\]](#ref-40)
 
-I tested two logical computer-use agents that presented separate desktops. At first glance, they looked isolated. A small causal probe showed a more precise picture.
-
-| Probe | Observation in the tested environment | What it ruled in or out |
-|---|---|---|
-| Host and boot identity | Same | Not separate machines or VMs |
-| User, PID, mount, and network namespaces | Same | Same OS security domain |
-| Harmless nonce file and live PID | Visible across both | Shared filesystem and process view |
-| Graphical display | Different | Separate GUI lanes |
-| Timed actions on different displays | Progressed concurrently | Cross-lane parallelism |
-| A second action stream on one busy display | Queued, then ran | Same-lane serialization in that test |
-
-The result was not “two VMs.” It was closer to **one host with multiple routed graphical lanes**. Separate displays prevented ordinary pointer and window collisions, but they did not protect mutually untrusted workers from shared files, processes, sockets, or credentials.
-
-That leads to a general scheduling rule:
+Muse and Grok Bot put this work in the cloud. Their VM and container boundaries determine which resources belong to a user, which agents share, and which services remain outside the agents’ execution environment. A VM provides a separate machine with its own kernel; containers and processes divide the work within it. An agent’s separate desktop therefore does not necessarily mean it has a separate computer.
 
 ```text
-different independent resources  -> run concurrently
-same mutable resource             -> lease or serialize
-unknown resource ownership        -> do not guess; inspect first
+MUSE                                    GROK BOT
+──────────────────────────────────      ──────────────────────────────────
+Per-user Linux VM                       Per-user Linux VM (microVM)
+│                                       │
+├── Linux container                     └── Linux container
+│   │                                       │
+│   ├── Hatch harness                       ├── Grok harness / Bots
+│   │   ├── Main agent session              │   ├── Bot A + desktop A
+│   │   └── Helper sessions                 │   └── Bot B + desktop B
+│   │                                       │
+│   └── Tools and workspace                 └── Shared files and logins
+│
+└── Protected services
+    Outside the agent container
+    ├── Sentinel permissions
+    └── Credential storage
+
 ```
 
-The same rule applies far beyond desktops:
+Grok Bot gives each user a persistent VM shared by their Bots. [\[41\]](#ref-41) Each Bot has separate desktop and browser processes within the shared Linux environment. They can work on different pages while accessing the same filesystem and shared website logins. Browser state is divided more selectively: profile directories and local storage are separate, while cookie and login storage are shared. Each Bot can maintain its own conversation and task context without rebuilding the working environment or signing into every service again.
 
-- Two workers can investigate different modules in parallel.
-- Two workers should not edit the same file without an ownership protocol.
-- Two browser tabs may load independently, but actions within one stateful form are ordered.
-- Two job applications can be prepared in parallel, but one account submission needs an idempotent duplicate check.
+Muse runs its Hatch harness, workspace, and agent-executed programs inside a Linux container, with credential storage, permission checks, and privileged connector workers outside it. Browser use is exposed as a delegated task: the calling agent passes a browsing objective to a specialist worker, which handles page interactions through a controlled browser service. Delegation does not require passing the stored credentials into the worker’s context; the protected services can supply them when needed. [\[42\]](#ref-42)
 
-Built-in worktrees are valuable for exactly this reason: they convert one shared checkout into independent writable lanes. The coordinator can then merge at a deliberate boundary instead of accepting accidental last-writer-wins behavior.
+Connector access follows a related separation. Code inside the container requests an action, a protected worker executes it, and a separate permission service decides whether it is allowed. The agent deciding what to do, the environment performing the work, and the services holding account access have different responsibilities. Meta’s Muse architecture shows how those responsibilities can be separated while still allowing the agents to work with shared resources. [\[42\]](#ref-42)
 
-## 4. Code is the control plane; agents are semantic workers
+## What we learned and what comes next
 
-I also traced a code-mode browser workflow with two execution levels:
+Subagents are unsexy: the basic design looks much like it did six months ago. Yet the same patterns now support longer coding tasks and experiments that combine browser work, backend analysis, and validation.
 
-```text
-model
-  -> ephemeral orchestration program
-      -> persistent adapter runtime
-          -> browser SDK
-              -> local browser service
-                  -> real browser state
-```
+**What we learned**
 
-The outer program was intentionally short-lived. It could fan out independent calls, branch on results, filter large outputs, and decide what evidence to return. The inner runtime kept expensive handles - a browser binding or tab handle - alive across steps.
+- A main agent manages the overall objective, interacts with the user, and delegates work.
+- Heavy tasks or work requiring different context fit naturally into background agents.
+- Messages coordinate the work, while shared files preserve findings and progress across sessions.
+- Delegation is straightforward; getting agents to debate and agree on a good design without human steering remains unreliable.
 
-This split is useful because **workflow state and operational state have different lifetimes**. A disposable control program limits stale local variables. A scoped persistent adapter avoids reconnecting to the browser on every action. The real page still lives in the browser, so a JavaScript handle is only a reference and can become stale.
+**What we predict**
 
-A sanitized sketch looks like this:
-
-```javascript
-const result = await tools.statefulAdapter({
-  code: `
-    const tabs = await Promise.all([
-      browser.tabs.new(),
-      browser.tabs.new(),
-    ]);
-
-    try {
-      await Promise.all(tabs.map(tab => tab.goto(target)));
-      const observations = await Promise.all(
-        tabs.map(async tab => ({
-          id: tab.id,
-          title: await tab.title(),
-          url: await tab.url(),
-        }))
-      );
-      runtime.write(observations);
-    } finally {
-      await Promise.all(tabs.map(tab => tab.close()));
-    }
-  `,
-});
-
-forwardToModel(result);
-```
-
-The model chooses the strategy. Code makes the fan-out, join, and cleanup semantics explicit.
-
-This is also where MCP fits. MCP standardizes how a runtime discovers and calls external capabilities; it does not replace the scheduler or define who owns a resource. A tool changes the world, a skill teaches a method, and a protocol connects the runtime to capabilities. Keeping those layers separate makes permissioning and evaluation much easier.
-
-## 5. Dynamic workflows should become typed programs
-
-Some tasks are truly exploratory: the model should discover the next step. Others repeat the same coordination pattern every run. Leaving those stable mechanics inside a coordinator's context wastes tokens and makes replay harder.
-
-The progression I find useful is:
-
-```text
-goal -> discovered plan -> typed workflow -> deterministic replay
-```
-
-The goal remains the human-facing specification. The workflow encodes what has become stable:
-
-- which stages can run in parallel;
-- which stages form a pipeline;
-- where a global barrier is necessary;
-- retry and cancellation boundaries;
-- resource leases;
-- the schema of each result;
-- the evidence required to advance.
-
-The model should still wake up for ambiguity, exceptions, interpretation, and synthesis. It does not need to rediscover a `for` loop, a semaphore, or a join condition on every run.
-
-This resembles the progression described in OpenAI's [Symphony](https://openai.com/index/open-source-codex-orchestration-symphony/): an early orchestrator can be a session polling tasks and spawning agents, but reliability comes from making lifecycle and proof-of-work explicit in the harness.
-
-## 6. Evidence-bearing joins beat majority vote
-
-More agents do not automatically improve coverage or correctness. They can duplicate the same mistake faster.
-
-For evaluation work, I use a conflict-preserving pattern:
-
-```text
-fan out independent measurements
-  -> join by case without hiding disagreements
-  -> consolidate across cases
-  -> run deliberately decorrelated critics
-  -> adjudicate disagreements against cited evidence
-```
-
-Each worker returns a small schema:
-
-```yaml
-claim: what the worker believes
-evidence: exact artifact location or observable state
-confidence: calibrated, not rhetorical
-falsifier: what would prove the claim wrong
-```
-
-The `falsifier` field is more valuable than it first appears. It turns disagreement into the next experiment instead of a debate over which answer sounds more confident.
-
-Anthropic reports a related orchestrator-worker architecture for research, with parallel subagents, adaptive search, and a separate citation stage. Their engineering write-up also describes the failure modes: vague delegation caused duplicated work and gaps, while clearer task boundaries and two levels of parallelism materially reduced latency on complex queries ([multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)).
-
-The broader lesson is:
-
-> Delegation distributes work. It does not define the stopping condition.
-
-Define a shared invariant first, then verify it independently. A census stage can tell every worker how many items should exist, but an incorrect census only makes the team consistently wrong.
-
-## 7. Long-running agents are distributed systems
-
-If a turn can outlive an HTTP request, terminal, laptop connection, or context window, the runtime needs familiar distributed-systems properties:
-
-- **Durable admission:** acknowledge work only after it has been recorded.
-- **Idempotency:** retrying one logical request should not create a second external side effect.
-- **Ordered events:** clients should resume after a cursor instead of replaying the universe.
-- **Heartbeats and leases:** distinguish slow work from abandoned ownership.
-- **Cancellation:** record whether cancellation was requested, delivered, and acknowledged.
-- **Artifact persistence:** preserve useful work even if the final conversational answer is lost.
-- **Typed terminal states:** completed, failed, cancelled, or waiting for a specific intervention.
-
-Human takeover is a good stress test. A safe design pauses at a known boundary, persists the continuation, transfers an exclusive control lease, and re-observes the environment when the agent resumes. A changed screenshot is not proof that a lower-level executor revoked its lease. Instrument both the policy boundary and the action executor before claiming preemption.
-
-OpenAI's description of Codex safety uses the same separation: sandbox boundaries, approval policy, network controls, and telemetry are distinct layers ([Running Codex safely at OpenAI](https://openai.com/index/running-codex-safely/)).
-
-## 8. When a team helps - and when it hurts
-
-A multi-agent design is a strong fit when:
-
-- work can be divided into independent, meaningful slices;
-- each slice has a narrow contract;
-- workers benefit from fresh context or different tools;
-- results can be checked independently;
-- wall-clock latency matters enough to pay coordination cost.
-
-A single agent or deterministic workflow is usually better when:
-
-- the task is sequential;
-- several workers would edit the same mutable artifact;
-- decomposition is harder than the work;
-- the result is subjective and has no verifier;
-- token and coordination overhead dominate.
-
-Claude Code's own agent-team documentation makes the same tradeoff explicit: teams are useful for research, competing debugging hypotheses, and cross-layer work, but add token and coordination overhead and are weaker for sequential or same-file tasks ([agent teams](https://code.claude.com/docs/en/agent-teams)).
-
-## 9. The reference architecture I would build
-
-I would make the following pieces explicit:
-
-```text
-Goal + policy
-  -> coordinator
-      -> typed task graph
-      -> worker registry
-      -> mailbox and wake-up semantics
-      -> leases keyed by mutable resource
-      -> bounded parallel workers
-      -> evidence-bearing result store
-  -> verifier checks artifact and external state
-  -> accept, reopen, or escalate
-```
-
-The coordinator should be small enough to reason about. Workers should own separate contexts and artifacts. The task graph should expose dependencies instead of hiding them in prose. The verifier should inspect the world, not trust “success” in a model message.
-
-That is the core shift from a clever demo to a dependable system: **the model proposes and interprets; the runtime owns coordination; the environment supplies evidence.**
-
-## Closing thought
-
-The best multi-agent systems I have seen do not feel like a room full of chatbots. They feel like a disciplined runtime for concurrent work.
-
-The number of agents is almost an implementation detail. The architecture lives in the boundaries: which context is isolated, which state is shared, which resource has a lease, which message wakes a worker, which action can be retried, and which observation proves completion.
-
-Once those boundaries are explicit, adding another agent can increase useful throughput. Before that, it mostly increases the number of ways the system can be confidently unfinished.
+- Workers will discover each other’s state and coordinate directly, without the main agent directing every exchange.
+- Agents will resolve more design disagreements through discussion and testing, with less human intervention.
+- Dynamic workflows will move validation earlier: we establish test contracts, constraints, and approval boundaries, and agents write the coordination and checks that let them explore larger tasks.
 
 ## References
 
-- [Introducing the Codex app - OpenAI](https://openai.com/index/introducing-the-codex-app/)
-- [Introducing Codex - OpenAI](https://openai.com/index/introducing-codex/)
-- [Open-source Codex orchestration: Symphony - OpenAI](https://openai.com/index/open-source-codex-orchestration-symphony/)
-- [Running Codex safely at OpenAI - OpenAI](https://openai.com/index/running-codex-safely/)
-- [Orchestrate teams of Claude Code sessions - Anthropic](https://code.claude.com/docs/en/agent-teams)
-- [How we built our multi-agent research system - Anthropic](https://www.anthropic.com/engineering/multi-agent-research-system)
-- [Effective context engineering for AI agents - Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
-- [Grok multi-agent mode - xAI](https://x.ai/grok)
+1. <span id="ref-1"></span>OpenAI. [Orchestration and handoffs](https://developers.openai.com/api/docs/guides/agents/orchestration).
+2. <span id="ref-2"></span>Kimi. [Kimi Agent Swarm: 100 Sub-Agents at Scale](https://www.kimi.ai/blog/agent-swarm).
+3. <span id="ref-3"></span>Kevin Niparko. [Grok Bot for PMs](https://x.ai/bot/guides/grok-bot-for-pms).
+4. <span id="ref-4"></span>Sequoia Capital. [Google DeepMind’s Logan Kilpatrick: Why the Model Eats the Harness](https://sequoiacap.com/podcast/google-deepminds-logan-kilpatrick-why-the-model-eats-the-harness).
+5. <span id="ref-5"></span>Lilian Weng. [Harness Engineering for Self-Improvement](https://lilianweng.github.io/posts/2026-07-04-harness/).
+6. <span id="ref-6"></span>Cursor. [New Coding Model and Agent Interface](https://cursor.com/changelog/2-0).
+7. <span id="ref-7"></span>Claude Code issue tracker. [Undocumented “Clear Context” transition options in Plan Mode](https://github.com/anthropics/claude-code/issues/19426).
+8. <span id="ref-8"></span>Prithvi Rajasekaran. [Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps).
+9. <span id="ref-9"></span>Anthropic. [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system).
+10. <span id="ref-10"></span>Kevin Alwell and Glory Jain. [Introduction to the Deep Research API with the Agents SDK](https://developers.openai.com/cookbook/examples/deep_research_api/introduction_to_deep_research_api_agents).
+11. <span id="ref-11"></span>OpenAI. [Financial research agent example](https://github.com/openai/openai-agents-python/tree/main/examples/financial_research_agent).
+12. <span id="ref-12"></span>n8n. [Documentation](https://docs.n8n.io/).
+13. <span id="ref-13"></span>Anthropic. [Introducing Claude Sonnet 4.5](https://www.anthropic.com/news/claude-sonnet-4-5).
+14. <span id="ref-14"></span>SWE-bench team. [SWE-bench benchmarks and leaderboards](https://www.swebench.com/).
+15. <span id="ref-15"></span>DeepSeek-AI. [DeepSeek-V3.2: Pushing the Frontier of Open Large Language Models](https://arxiv.org/html/2512.02556v1#S3).
+16. <span id="ref-16"></span>Binfeng Xu et al. [Polar: Agentic RL on Any Harness at Scale](https://arxiv.org/html/2605.24220v1).
+17. <span id="ref-17"></span>Harbor Hub. [Terminal-Bench 4.0](https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/4?tab=tasks).
+18. <span id="ref-18"></span>Artificial Analysis. [GDPval-AA](https://artificialanalysis.ai/evaluations/gdpval-aa).
+19. <span id="ref-19"></span>Nathan Lambert and Finbarr Timbers. [Frontier post-training recipe review with Finbarr Timbers](https://www.interconnects.ai/p/frontier-post-training-recipe-review).
+20. <span id="ref-20"></span>Geoffrey Huntley. [Ralph](https://ghuntley.com/ralph/).
+21. <span id="ref-21"></span>OpenAI. [Using Goals in Codex](https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex).
+22. <span id="ref-22"></span>Andrej Karpathy. [autoresearch](https://github.com/karpathy/autoresearch).
+23. <span id="ref-23"></span>OpenAI. [Compaction](https://developers.openai.com/api/docs/guides/compaction).
+24. <span id="ref-24"></span>Yubin Kim et al. [Towards a Science of Scaling Agent Systems](https://arxiv.org/html/2512.08296v2).
+25. <span id="ref-25"></span>Gautier Dagan, Frank Keller, and Alex Lascarides. [Plancraft: an evaluation dataset for planning with LLM agents](https://arxiv.org/abs/2412.21033).
+26. <span id="ref-26"></span>Dwarkesh Patel, John Schulman, Beren Millidge, and Charlie O’Neill. [AI researchers debate how close we are to recursive self-improvement](https://www.dwarkesh.com/p/john-beren-charlie).
+27. <span id="ref-27"></span>OpenAI. [Codex source: spawn assignment and conversation-history parameters](https://github.com/openai/codex/blob/322d5b96cfa5c8fd52bd83ecfdb79cd9b330205f/codex-rs/core/src/tools/handlers/multi_agents_spec.rs#L631).
+28. <span id="ref-28"></span>Anthropic. [Create custom subagents](https://code.claude.com/docs/en/sub-agents).
+29. <span id="ref-29"></span>OpenAI. [Codex source: multi-agent V2 spawn implementation](https://github.com/openai/codex/blob/322d5b96cfa5c8fd52bd83ecfdb79cd9b330205f/codex-rs/core/src/tools/handlers/multi_agents_v2/spawn.rs#L104).
+30. <span id="ref-30"></span>Anthropic. [Track todos](https://code.claude.com/docs/en/agent-sdk/todo-tracking).
+31. <span id="ref-31"></span>Anthropic. [Orchestrate teams of Claude Code sessions](https://code.claude.com/docs/en/agent-teams).
+32. <span id="ref-32"></span>Wilson Lin. [Scaling long-running autonomous coding](https://cursor.com/blog/scaling-agents).
+33. <span id="ref-33"></span>Nicholas Carlini. [Building a C compiler with a team of parallel Claudes](https://www.anthropic.com/engineering/building-c-compiler).
+34. <span id="ref-34"></span>OpenAI. [Codex source: collaboration-tool definitions](https://github.com/openai/codex/blob/322d5b96cfa5c8fd52bd83ecfdb79cd9b330205f/codex-rs/core/src/tools/handlers/multi_agents_spec.rs).
+35. <span id="ref-35"></span>Anthropic. [Orchestrate subagents at scale with dynamic workflows](https://code.claude.com/docs/en/workflows).
+36. <span id="ref-36"></span>OpenAI. [Codex source: nested tool dispatch in code mode](https://github.com/openai/codex/blob/322d5b96cfa5c8fd52bd83ecfdb79cd9b330205f/codex-rs/core/src/tools/code_mode/mod.rs#L293).
+37. <span id="ref-37"></span>OpenAI. [Computer use](https://developers.openai.com/api/docs/guides/tools-computer-use).
+38. <span id="ref-38"></span>METR. [Task-Completion Time Horizons of Frontier AI Models](https://metr.org/time-horizons/).
+39. <span id="ref-39"></span>OpenAI. [ChatGPT Work cloud security](https://learn.chatgpt.com/docs/enterprise/chatgpt-work-cloud-security).
+40. <span id="ref-40"></span>Anthropic. [Scaling Managed Agents: Decoupling the brain from the hands](https://www.anthropic.com/engineering/managed-agents).
+41. <span id="ref-41"></span>SpaceXAI. [Grok Bot for teams and enterprises](https://docs.x.ai/grok-bot/teams-and-enterprises#architecture).
+42. <span id="ref-42"></span>Meta. [How We Built Safety Into Muse](https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse).
+{: .reference-list}
