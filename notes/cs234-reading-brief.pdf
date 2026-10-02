@@ -1,0 +1,657 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R] /Count 6 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 3726 >>
+stream
+BT
+/F1 9 Tf
+54 740 Td
+(CS234 REINFORCEMENT LEARNING DEEP READING BRIEF) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Source course: Stanford CS234, Winter 2026 \(https://web.stanford.edu/class/cs234/ and) Tj
+0 -13 Td
+(https://web.stanford.edu/class/cs234/modules.html\).) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(I could not run the requested local deepbrief-daily skill because) Tj
+0 -13 Td
+(/Users/liuzikai/Documents/GitHub/deepbrief/.agents/skills/deepbrief-daily/SKILL.md is not) Tj
+0 -13 Td
+(present in this container. This file is the fallback deep-brief artifact: it incorporates the) Tj
+0 -13 Td
+(course home page, lecture-materials page, lecture slide PDFs, additional readings,) Tj
+0 -13 Td
+(discussion/check-your-understanding prompts, guest materials, and reference links into one study) Tj
+0 -13 Td
+(document. The generated target PDF is notes/cs234-reading-brief.pdf.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(REPRODUCIBLE ARTIFACTS) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- Target PDF: notes/cs234-reading-brief.pdf.) Tj
+0 -13 Td
+(- Source brief: notes/cs234-reading-brief.md.) Tj
+0 -13 Td
+(- Full PDF bundle downloader: scripts/download_cs234_pdfs.py.) Tj
+0 -13 Td
+(- PDF generator: scripts/generate_cs234_summary_pdf.py.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Run:) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(bash) Tj
+0 -13 Td
+(python3 scripts/download_cs234_pdfs.py --out-dir downloads/cs234-pdfs) Tj
+0 -13 Td
+(python3 scripts/generate_cs234_summary_pdf.py) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(The downloader writes a JSON manifest with per-file status. In this container the course hosts) Tj
+0 -13 Td
+(are blocked by the outbound proxy, but the manifest is explicit and ready for a network that can) Tj
+0 -13 Td
+(reach Stanford, cs229.stanford.edu, incompleteideas.net, and tor-lattimore.com.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(COMPLETE COURSE-MATERIAL MANIFEST) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Topic | Official materials to download/read | Additional readings/references | What to extract) Tj
+0 -13 Td
+(Introduction to RL | lecture1pre.pdf, lecture1post.pdf | Sutton & Barto Ch. 1; CS229 linear) Tj
+0 -13 Td
+(algebra review; CS229 probability review; CS231n Python/Numpy tutorial | RL as experience-driven) Tj
+0 -13 Td
+(sequential decision-making under uncertainty; optimization, delayed consequences, exploration,) Tj
+0 -13 Td
+(and generalization; how to formulate state/action/reward/dynamics for applications.) Tj
+0 -13 Td
+(Tabular MDP planning | lecture2pre.pdf, lecture2post.pdf | Sutton & Barto Ch. 3, 4.1-4.4 |) Tj
+0 -13 Td
+(Markov reward/decision processes, policies, returns, value functions, Bellman) Tj
+0 -13 Td
+(expectation/optimality equations, policy evaluation, policy improvement, policy iteration, value) Tj
+0 -13 Td
+(iteration, and contraction/fixed-point intuition.) Tj
+0 -13 Td
+(Tabular RL policy evaluation | lecture3pre.pdf, lecture3post.pdf | Sutton & Barto 5.1, 5.5,) Tj
+0 -13 Td
+(6.1-6.3 | Estimating a policy?s value from direct experience; Monte Carlo first/every visit) Tj
+0 -13 Td
+(evaluation; temporal-difference learning; bootstrapping; certainty-equivalence/batch ideas;) Tj
+0 -13 Td
+(bias-variance tradeoffs.) Tj
+0 -13 Td
+(Q-learning / model-free control | lecture4pre.pdf, lecture4post.pdf | Sutton & Barto 5.2, 5.4,) Tj
+0 -13 Td
+(6.4-6.5, 6.7 | SARSA versus Q-learning, on-policy versus off-policy control, epsilon-greedy) Tj
+0 -13 Td
+(exploration, GLIE intuition, TD control targets, and why function approximation changes) Tj
+0 -13 Td
+(stability guarantees.) Tj
+0 -13 Td
+(Policy gradient I | lecture5pre.pdf, lecture5post.pdf | Sutton & Barto Ch. 13 | Directly) Tj
+0 -13 Td
+(optimizing stochastic policies; policy-gradient theorem; likelihood-ratio/score-function) Tj
+0 -13 Td
+(gradients; REINFORCE; baselines; return-to-go; variance reduction.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 4652 >>
+stream
+BT
+/F1 9 Tf
+54 740 Td
+(Policy gradient II | lecture6pre.pdf, lecture6post.pdf | Sutton & Barto Ch. 13; Joshua Achiam-) Tj
+0 -13 Td
+(derived advanced PG material | Advantage functions, actor-critic structure, natural/trust-region) Tj
+0 -13 Td
+(style motivation, practical instability, and why critic quality controls actor update quality.) Tj
+0 -13 Td
+(Policy gradients and imitation | lecture7pre.pdf, lecture7post.pdf | Sutton & Barto Ch. 13 plus) Tj
+0 -13 Td
+(imitation-learning references | Policy search continuation, supervised imitation, distribution) Tj
+0 -13 Td
+(shift, behavior cloning limits, and transition into DAgger/reward-learning views.) Tj
+0 -13 Td
+(Imitation, RLHF, DPO, batch/offline RL | lecture8pre.pdf, lecture8post.pdf | Ross et al. DAgger;) Tj
+0 -13 Td
+(preference-learning/RLHF references; Bradley-Terry preference model | Compounding errors,) Tj
+0 -13 Td
+(dataset aggregation, reward ambiguity, pairwise preference learning, RL from human feedback,) Tj
+0 -13 Td
+(direct preference optimization, and offline-policy risk.) Tj
+0 -13 Td
+(Data-efficient RL I | lecture9pre.pdf, lecture9post.pdf | Bandit Algorithms Section 7.1 |) Tj
+0 -13 Td
+(Regret/sample-efficiency framing, optimism under uncertainty, confidence intervals, PAC/sample-) Tj
+0 -13 Td
+(complexity thinking, and why random exploration is often inefficient.) Tj
+0 -13 Td
+(Fast RL / data-efficient RL II / ethics | lecture10post.pdf, ethics_society_234_2.pdf | Bandit) Tj
+0 -13 Td
+(Algorithms Section 7.1; ethics and society guest material | Strategic exploration,) Tj
+0 -13 Td
+(posterior/optimistic methods, deployment incentives, societal feedback loops, reward) Tj
+0 -13 Td
+(misspecification, and responsible evaluation.) Tj
+0 -13 Td
+(Fast RL / strategic exploration | lecture11pre.pdf, lecture11post.pdf | Bandit Algorithms) Tj
+0 -13 Td
+(Section 7.1 | Information-directed action choice, uncertainty-aware learning, optimism/posterior) Tj
+0 -13 Td
+(sampling connections, and how exploration methods scale imperfectly in deep settings.) Tj
+0 -13 Td
+(Fast RL continued | lecture12pre.pdf, lecture12post.pdf | Bandit Algorithms Section 7.1 |) Tj
+0 -13 Td
+(Continued efficient RL: exploration bonuses, confidence sets, model uncertainty, intrinsic) Tj
+0 -13 Td
+(motivation, deep approximations, and empirical/theoretical tradeoffs.) Tj
+0 -13 Td
+(Monte Carlo Tree Search | lecture13pre.pdf, lecture13post.pdf | AlphaGo/AlphaZero papers) Tj
+0 -13 Td
+(referenced in slides | Simulation-based search, simple Monte Carlo search, expectimax, UCT,) Tj
+0 -13 Td
+(search-tree backups, self-play, value/policy networks, and the role of local computation.) Tj
+0 -13 Td
+(MCTS continuation / guest ethics part 2 | lecture14pre.pdf, lecture14post.pdf,) Tj
+0 -13 Td
+(ethics_society_234_2.pdf | AlphaGo/AlphaZero and ethics references | Planning-learning) Tj
+0 -13 Td
+(integration, self-play curricula, neural MCTS variants, and ethical evaluation beyond reward) Tj
+0 -13 Td
+(maximization.) Tj
+0 -13 Td
+(RL guest lecture | ShaneGuCS234_2026.pdf | World-modeling/model-based RL literature | Learned) Tj
+0 -13 Td
+(dynamics/world models, compact predictive representations, planning in latent space, model) Tj
+0 -13 Td
+(error, and why model-based RL can be sample-efficient but fragile.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(DEEP SYNTHESIS BY COURSE ARC) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. WHAT RL IS AND WHEN TO USE IT) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(The course begins by separating reinforcement learning from standard non-interactive machine) Tj
+0 -13 Td
+(learning. RL is about choosing actions that affect future observations, rewards, and) Tj
+0 -13 Td
+(opportunities. The central object is an agent-environment loop: state or observation arrives,) Tj
+0 -13 Td
+(the agent chooses an action, the environment transitions, and reward arrives. Four features) Tj
+0 -13 Td
+(appear repeatedly: optimization, delayed consequences, exploration, and generalization. The) Tj
+0 -13 Td
+(discussion prompts in lecture 1 ask students to model an AI tutor as a decision process; the) Tj
+0 -13 Td
+(point is that state, action, reward, and dynamics must be explicit before an RL algorithm is) Tj
+0 -13 Td
+(meaningful.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(A practical rule: use RL when the problem involves sequential decisions, delayed consequences,) Tj
+0 -13 Td
+(and data that depends on the learner?s choices. If expert-labeled independent examples are) Tj
+0 -13 Td
+(enough, supervised learning is simpler. If a known model is available and no learning is needed,) Tj
+0 -13 Td
+(planning may suffice. If there is a fixed logged dataset, offline RL or imitation may be safer) Tj
+0 -13 Td
+(than online trial-and-error.) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 4060 >>
+stream
+BT
+/F1 9 Tf
+54 740 Td
+() Tj
+0 -13 Td
+(2. MDPS, VALUE FUNCTIONS, AND PLANNING) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(The MDP section provides the mathematical foundation for the rest of the course. A finite) Tj
+0 -13 Td
+(discounted MDP consists of states, actions, transitions, rewards, and discount factor. A policy) Tj
+0 -13 Td
+(maps states or histories to actions. Returns sum discounted future rewards. State values and) Tj
+0 -13 Td
+(action values are expectations of return. Bellman equations make the recursive structure) Tj
+0 -13 Td
+(explicit: today?s value is immediate reward plus discounted next value.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(With a known model, dynamic programming can evaluate and improve policies. Policy iteration) Tj
+0 -13 Td
+(alternates evaluation and improvement. Value iteration directly applies Bellman optimality) Tj
+0 -13 Td
+(backups. The reason these methods work in the tabular discounted setting is contraction:) Tj
+0 -13 Td
+(repeated backups approach a unique fixed point. The limitation is scale; exact dynamic) Tj
+0 -13 Td
+(programming becomes impossible for large state/action spaces or unknown dynamics.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(3. LEARNING POLICY VALUES FROM EXPERIENCE) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Lecture 3 removes the known-model assumption and asks how to evaluate a policy from sampled) Tj
+0 -13 Td
+(trajectories. Monte Carlo policy evaluation averages observed returns after complete episodes.) Tj
+0 -13 Td
+(It is conceptually simple, does not require a Markov model, and can be first-visit or every-) Tj
+0 -13 Td
+(visit. Its weakness is high variance and the need for episode termination.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Temporal-difference methods update online using bootstrapped targets such as r + gamma V\(s'\). TD) Tj
+0 -13 Td
+(mixes sampling and dynamic programming: it uses real transitions but substitutes the current) Tj
+0 -13 Td
+(value estimate for the rest of the future. This introduces bias but often lowers variance and) Tj
+0 -13 Td
+(works before an episode ends. The key discussion issue is not ?MC versus TD is always better,?) Tj
+0 -13 Td
+(but which estimator?s bias/variance/online properties fit the environment.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(4. CONTROL: SARSA, Q-LEARNING, AND EXPLORATION) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Control asks how to improve behavior, not just evaluate a fixed policy. Action-value functions) Tj
+0 -13 Td
+(are central because they let the agent compare actions without a model. SARSA updates toward the) Tj
+0 -13 Td
+(action actually selected by the behavior policy and is on-policy. Q-learning updates toward the) Tj
+0 -13 Td
+(greedy next action and is off-policy. Both depend on sufficient exploration; greedy behavior can) Tj
+0 -13 Td
+(lock in bad estimates.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(The lecture notes use this transition to introduce function approximation. Tabular convergence) Tj
+0 -13 Td
+(arguments assume each state-action pair can be represented and visited. Once values are) Tj
+0 -13 Td
+(approximated, especially with neural networks, generalization is helpful but instability) Tj
+0 -13 Td
+(appears. The ?deadly triad? intuition is already visible: bootstrapping plus off-policy learning) Tj
+0 -13 Td
+(plus function approximation can diverge or overestimate.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(5. POLICY GRADIENTS AND ACTOR-CRITIC METHODS) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Policy-gradient lectures move from value-based control to direct policy optimization. A) Tj
+0 -13 Td
+(stochastic policy with parameters can be optimized using the policy-gradient theorem: actions) Tj
+0 -13 Td
+(whose sampled outcomes are better than expected should become more likely. REINFORCE is the core) Tj
+0 -13 Td
+(estimator; return-to-go and baselines reduce variance. A baseline does not change the expected) Tj
+0 -13 Td
+(gradient if it does not depend on the action.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Actor-critic methods add a learned value function. The actor changes the policy; the critic) Tj
+0 -13 Td
+(estimates value or advantage. Good critics reduce variance and improve sample efficiency, but) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> >> >> /Contents 10 0 R >>
+endobj
+10 0 obj
+<< /Length 4219 >>
+stream
+BT
+/F1 9 Tf
+54 740 Td
+(bad critics bias or destabilize updates. Trust-region, natural-gradient, and clipped-objective) Tj
+0 -13 Td
+(intuitions all respond to the same practical problem: a single policy-gradient step can make the) Tj
+0 -13 Td
+(policy worse, so updates should be controlled and evaluated.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(6. IMITATION LEARNING, REWARD LEARNING, RLHF, AND OFFLINE RL) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(The imitation/RLHF part emphasizes that ?learn from humans? is not one method. Behavior cloning) Tj
+0 -13 Td
+(treats demonstrations as supervised \(state, action\) examples, but its iid assumption breaks) Tj
+0 -13 Td
+(because learned policies visit states induced by their own errors. Errors compound over time.) Tj
+0 -13 Td
+(DAgger fixes this by aggregating expert labels on states visited by the learner.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Reward learning asks a different question: if we see expert behavior, what reward explains it?) Tj
+0 -13 Td
+(The answer is usually non-unique. Preference learning and RLHF collect comparisons or feedback) Tj
+0 -13 Td
+(and fit a reward/preference model. The Bradley-Terry style view makes pairwise comparisons) Tj
+0 -13 Td
+(probabilistic. DPO-like methods shortcut parts of reward-model-plus-RL pipelines. Offline RL) Tj
+0 -13 Td
+(adds another constraint: policies must not exploit unsupported actions in the dataset, because) Tj
+0 -13 Td
+(value estimates off the data distribution can be arbitrarily optimistic.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(7. DATA-EFFICIENT RL AND EXPLORATION) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(The data-efficient RL lectures reframe learning quality in terms of regret, sample complexity,) Tj
+0 -13 Td
+(and useful information gathering. Random exploration is easy but often wasteful. Optimism under) Tj
+0 -13 Td
+(uncertainty acts as if uncertain actions may be good, encouraging the learner to test them.) Tj
+0 -13 Td
+(Posterior sampling samples a plausible model/value function and acts optimally under that) Tj
+0 -13 Td
+(sample. Count-based bonuses, confidence intervals, ensembles, and intrinsic rewards are) Tj
+0 -13 Td
+(different ways to operationalize uncertainty.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(Bandit Algorithms Section 7.1 supplies the smaller laboratory for these ideas. In bandits, there) Tj
+0 -13 Td
+(are no state transitions, so the exploration-exploitation tradeoff is isolated. RL generalizes) Tj
+0 -13 Td
+(this problem because information gathered now can affect future states and future information.) Tj
+0 -13 Td
+(The discussions in these lectures should be read as asking: what uncertainty matters for) Tj
+0 -13 Td
+(decision-making, and how does the algorithm convert uncertainty into action choice?) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(8. MCTS, ALPHAGO/ALPHAZERO, AND PLANNING WITH LEARNED COMPONENTS) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(MCTS shows that learning and planning can be combined. Instead of computing a full policy over) Tj
+0 -13 Td
+(all states, the agent spends local computation at the current state. Simple Monte Carlo search) Tj
+0 -13 Td
+(simulates rollouts for candidate actions. Expectimax is exact lookahead but grows exponentially.) Tj
+0 -13 Td
+(MCTS samples selectively, building a tree where promising or uncertain nodes receive more) Tj
+0 -13 Td
+(computation. UCT borrows bandit upper-confidence ideas at each tree node.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(AlphaGo/AlphaZero-style systems add learned policy priors, learned value estimates, and self-) Tj
+0 -13 Td
+(play. Policy networks guide search; value networks evaluate leaves; MCTS improves move) Tj
+0 -13 Td
+(selection; self-play produces new training data. The important lesson is not only that Go was) Tj
+0 -13 Td
+(solved impressively, but that model-based search, model-free learning, supervised) Tj
+0 -13 Td
+(initialization, and self-play curricula can be composed.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(9. ETHICS, SOCIETY, AND DEPLOYMENT) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(The ethics material should be read as part of the technical course, not as an appendix. RL) Tj
+0 -13 Td
+(optimizes specified rewards, and specified rewards are proxies. Agents can exploit simulator) Tj
+0 -13 Td
+(errors, optimize engagement at social cost, amplify feedback loops, or choose actions that) Tj
+ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> >> >> /Contents 12 0 R >>
+endobj
+12 0 obj
+<< /Length 3783 >>
+stream
+BT
+/F1 9 Tf
+54 740 Td
+(gather data in harmful ways. Evaluation must include robustness, distribution shift, stakeholder) Tj
+0 -13 Td
+(impact, reward design, and monitoring after deployment. ?High return? is not the same thing as) Tj
+0 -13 Td
+(?good system.?) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(10. WORLD MODELING AND MODEL-BASED RL) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(The Shane Gu guest lecture on world modeling fits after MCTS and data-efficient RL. Model-based) Tj
+0 -13 Td
+(RL tries to learn a predictive model of the world and use it for planning, imagination, or) Tj
+0 -13 Td
+(representation learning. The promise is sample efficiency: simulated experience can be cheaper) Tj
+0 -13 Td
+(than real experience. The danger is model error: small prediction mistakes can compound under) Tj
+0 -13 Td
+(planning, and the agent may exploit model inaccuracies. Good world models need useful) Tj
+0 -13 Td
+(abstractions, uncertainty awareness, and careful planning horizons.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(CROSS-CUTTING REFERENCES AND PAPERS MENTIONED BY THE COURSE MATERIALS) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- Sutton & Barto, *Reinforcement Learning: An Introduction*, 2nd edition: foundational textbook) Tj
+0 -13 Td
+(for MDPs, dynamic programming, Monte Carlo methods, TD learning, control, function) Tj
+0 -13 Td
+(approximation, and policy gradients.) Tj
+0 -13 Td
+(- CS229 linear algebra and probability reviews: prerequisites for value-function approximation,) Tj
+0 -13 Td
+(gradients, uncertainty, and expectation notation.) Tj
+0 -13 Td
+(- Ross et al., DAgger / no-regret reduction: explains why behavior cloning suffers compounding) Tj
+0 -13 Td
+(error and why data aggregation helps.) Tj
+0 -13 Td
+(- Bradley-Terry preference modeling: useful for pairwise human preference learning and RLHF) Tj
+0 -13 Td
+(pipelines.) Tj
+0 -13 Td
+(- Bandit Algorithms, Section 7.1: formal exploration/regret background for efficient RL.) Tj
+0 -13 Td
+(- Silver et al. AlphaGo / AlphaZero references: canonical examples of self-play, neural) Tj
+0 -13 Td
+(policy/value estimates, and tree search integration.) Tj
+0 -13 Td
+(- Applied RL references surfaced in lecture 1: Go, plasma control, COVID-19 border testing, LLM) Tj
+0 -13 Td
+(reasoning/RLHF, robotics, tutoring, advertising, and healthcare.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(DISCUSSION PROMPTS TO RETAIN) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(1. For any application, define state, action, reward, transition dynamics, horizon, and) Tj
+0 -13 Td
+(observability. If this is hard, the RL problem is underspecified.) Tj
+0 -13 Td
+(2. If planning is possible, ask whether the model is known, learned, or only simulatable.) Tj
+0 -13 Td
+(3. For policy evaluation, decide whether complete episodes are available and whether) Tj
+0 -13 Td
+(bootstrapping is acceptable.) Tj
+0 -13 Td
+(4. For control, decide whether the target is on-policy performance or off-policy optimality.) Tj
+0 -13 Td
+(5. For policy gradients, identify the baseline, advantage estimate, and update-size safeguard.) Tj
+0 -13 Td
+(6. For imitation, ask what states the learned policy will visit at test time.) Tj
+0 -13 Td
+(7. For offline RL, identify which actions are unsupported by the dataset.) Tj
+0 -13 Td
+(8. For exploration, specify the uncertainty estimate and how it changes the action choice.) Tj
+0 -13 Td
+(9. For MCTS, identify the simulator/model, rollout/evaluation policy, selection rule, and backup) Tj
+0 -13 Td
+(rule.) Tj
+0 -13 Td
+(10. For deployment, ask who is affected by reward optimization and what happens under) Tj
+0 -13 Td
+(distribution shift.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(COMPACT EXAM MEMORY MAP) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(- RL: sequential decisions plus feedback from rewards.) Tj
+0 -13 Td
+(- MDP: states, actions, transitions, rewards, discount.) Tj
+0 -13 Td
+(- Return: discounted future reward.) Tj
+ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> >> >> /Contents 14 0 R >>
+endobj
+14 0 obj
+<< /Length 1448 >>
+stream
+BT
+/F1 9 Tf
+54 740 Td
+(- Value: expected return from a state or state-action pair.) Tj
+0 -13 Td
+(- Bellman equations: recursive definitions of value.) Tj
+0 -13 Td
+(- Planning: compute decisions with a known/simulatable model.) Tj
+0 -13 Td
+(- Policy iteration: evaluate, improve, repeat.) Tj
+0 -13 Td
+(- Value iteration: repeated optimal Bellman backups.) Tj
+0 -13 Td
+(- Monte Carlo: learn from full returns.) Tj
+0 -13 Td
+(- TD: learn from one-step bootstrapped targets.) Tj
+0 -13 Td
+(- SARSA: on-policy TD control.) Tj
+0 -13 Td
+(- Q-learning: off-policy greedy-target control.) Tj
+0 -13 Td
+(- Function approximation: generalization plus instability risk.) Tj
+0 -13 Td
+(- Policy gradient: directly optimize policy parameters.) Tj
+0 -13 Td
+(- Actor-critic: policy actor plus value/advantage critic.) Tj
+0 -13 Td
+(- Imitation: demonstrations; beware covariate shift.) Tj
+0 -13 Td
+(- DAgger: collect expert labels on learner-induced states.) Tj
+0 -13 Td
+(- RLHF/preference learning: learn from human comparisons or feedback.) Tj
+0 -13 Td
+(- Offline RL: fixed data; conservatism/constraints matter.) Tj
+0 -13 Td
+(- Exploration: convert uncertainty into informative actions.) Tj
+0 -13 Td
+(- Bandits: simplest regret laboratory.) Tj
+0 -13 Td
+(- MCTS: simulation-based local planning with tree search.) Tj
+0 -13 Td
+(- World models: learned predictive models for imagination/planning.) Tj
+0 -13 Td
+(- Ethics: reward is a proxy; evaluate consequences.) Tj
+ET
+endstream
+endobj
+xref
+0 15
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000147 00000 n 
+0000000322 00000 n 
+0000004100 00000 n 
+0000004275 00000 n 
+0000008979 00000 n 
+0000009154 00000 n 
+0000013266 00000 n 
+0000013442 00000 n 
+0000017714 00000 n 
+0000017891 00000 n 
+0000021727 00000 n 
+0000021904 00000 n 
+trailer
+<< /Size 15 /Root 1 0 R >>
+startxref
+23405
+%%EOF
